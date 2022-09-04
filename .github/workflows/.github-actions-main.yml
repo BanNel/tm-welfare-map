@@ -1,0 +1,23 @@
+name: Build App
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+jobs:
+  Build-App:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install and export
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.MAP_DEPLOY_TOKEN }}
+          publish_dir: ./build/
