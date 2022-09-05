@@ -48,6 +48,7 @@ const mapSlice = createSlice({
     mapStyle: defaultMapStyle,
     poiGeojson: null,
     hoveredFeature: null,
+    clickedFeature: null,
   },
   reducers: {
     setViewState(state, action) {
@@ -58,6 +59,9 @@ const mapSlice = createSlice({
     },
     setHoveredFeature(state, action) {
       state.hoveredFeature = action.payload;
+    },
+    setClickedFeature(state, action) {
+      state.clickedFeature = action.payload;
     },
   },
 });

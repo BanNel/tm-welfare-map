@@ -17,6 +17,8 @@ import PoiPopup from "./Popup/PoiPopup";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import maplibregl from "!maplibre-gl"; // ! is important here
 import maplibreglWorker from "maplibre-gl/dist/maplibre-gl-csp-worker";
+import { uiActions } from "../../store/ui-slice";
+import { isBrowser } from "react-device-detect";
 maplibregl.workerClass = maplibreglWorker;
 
 const MapView = () => {
@@ -47,43 +49,77 @@ const MapView = () => {
       setCursor("auto");
     });
 
-    let hoveredStateId = null;
+    let hoveredFeatureId = null;
+    let clickedFeatureId = null;
 
+    // mouseenter and mouseleave are desktop-only events
     mapRef.current.on("mouseenter", "poi", (e) => {
-      // Change cursor
-      mapRef.current.getCanvas().style.cursor = "pointer";
+      if (isBrowser) {
+        // Change cursor
+        mapRef.current.getCanvas().style.cursor = "pointer";
 
-      // Change feature style
-      let feature = e.features[0];
-      if (hoveredStateId !== null) {
+        // Change feature style
+        if (hoveredFeatureId !== null) {
+          mapRef.current.setFeatureState(
+            { source: "poi", id: hoveredFeatureId },
+            { hover: false }
+          );
+        }
+
+        hoveredFeatureId = e.features[0].id;
         mapRef.current.setFeatureState(
-          { source: "poi", id: hoveredStateId },
-          { hover: false }
+          { source: "poi", id: hoveredFeatureId },
+          { hover: true }
         );
       }
-
-      hoveredStateId = e.features[0].id;
-      mapRef.current.setFeatureState(
-        { source: "poi", id: hoveredStateId },
-        { hover: true }
-      );
-
-      // Open popup window
-      dispatch(mapActions.setHoveredFeature(feature));
     });
 
+    // mouseenter and mouseleave are desktop-only events
     mapRef.current.on("mouseleave", "poi", (e) => {
-      // Change cursor
-      mapRef.current.getCanvas().style.cursor = "auto";
+      if (isBrowser) {
+        // Change cursor
+        mapRef.current.getCanvas().style.cursor = "auto";
 
-      // Change feature style
-      if (hoveredStateId !== null) {
-        mapRef.current.setFeatureState(
-          { source: "poi", id: hoveredStateId },
-          { hover: false }
-        );
+        // Change feature style
+        if (hoveredFeatureId !== null) {
+          mapRef.current.setFeatureState(
+            { source: "poi", id: hoveredFeatureId },
+            { hover: false }
+          );
+        }
+        hoveredFeatureId = null;
       }
-      hoveredStateId = null;
+    });
+
+    mapRef.current.on("click", (e) => {
+      var features = mapRef.current.queryRenderedFeatures(e.point, {
+        layers: ["poi"],
+      });
+
+      // Close sidebar if click position without poi feature
+      if (features.length === 0) {
+        dispatch(uiActions.setToggleSidebarIsClose());
+        dispatch(mapActions.setClickedFeature(null));
+        if (clickedFeatureId !== null) {
+          clickedFeatureId = null;
+        }
+      }
+
+      // Open sidebar based on clicked feature information
+      if (features.length !== 0) {
+        let feature = features[0];
+        // TODO: 恢復 focus feature 原本的 icon
+        clickedFeatureId = feature.id;
+        // TODO: 更換當前 focus feature 的 icon
+        dispatch(mapActions.setClickedFeature(feature));
+        dispatch(uiActions.setToggleSidebarIsOpen());
+        // TODO: 修改為在某個 bounds 外就會平移到中心 (easeTo, padding, duration)
+        mapRef.current.flyTo({
+          center: feature.geometry.coordinates,
+          curve: 0,
+          duration: 1000,
+        });
+      }
     });
   }, [dispatch]);
 
