@@ -18,7 +18,7 @@ import PoiPopup from "./Popup/PoiPopup";
 import maplibregl from "!maplibre-gl"; // ! is important here
 import maplibreglWorker from "maplibre-gl/dist/maplibre-gl-csp-worker";
 import { uiActions } from "../../store/ui-slice";
-import { isBrowser } from "react-device-detect";
+import { isBrowser, isMobile } from "react-device-detect";
 maplibregl.workerClass = maplibreglWorker;
 
 const MapView = () => {
@@ -28,6 +28,8 @@ const MapView = () => {
   const viewState = useSelector((state) => state.map.viewState);
   const mapStyle = useSelector((state) => state.map.mapStyle);
   const hoveredFeature = useSelector((state) => state.map.hoveredFeature);
+  const sidebarWidth = useSelector((state) => state.ui.sidebarWidth);
+  const sidebarHeight = useSelector((state) => state.ui.sidebarHeight);
 
   const onMapLoad = useCallback(() => {
     // Add all icons to map
@@ -113,15 +115,27 @@ const MapView = () => {
         // TODO: 更換當前 focus feature 的 icon
         dispatch(mapActions.setClickedFeature(feature));
         dispatch(uiActions.setToggleSidebarIsOpen());
-        // TODO: 修改為在某個 bounds 外就會平移到中心 (easeTo, padding, duration)
-        mapRef.current.flyTo({
-          center: feature.geometry.coordinates,
-          curve: 0,
-          duration: 1000,
-        });
+
+        // Use POI coordinates as the center of the map display
+        // Consider the width and height of the sidebar to padding map
+        if (isBrowser) {
+          mapRef.current.easeTo({
+            center: feature.geometry.coordinates,
+            padding: { left: sidebarWidth },
+            duration: 1000,
+          });
+        }
+
+        if (isMobile) {
+          mapRef.current.easeTo({
+            center: feature.geometry.coordinates,
+            padding: { bottom: sidebarHeight },
+            duration: 1000,
+          });
+        }
       }
     });
-  }, [dispatch]);
+  }, [dispatch, sidebarWidth, sidebarHeight]);
 
   const onMove = useCallback(
     (e) => {

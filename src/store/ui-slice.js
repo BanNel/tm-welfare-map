@@ -4,6 +4,8 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     toggleSidebarIsOpen: false,
+    sidebarWidth: 0,
+    sidebarHeight: 0,
   },
   reducers: {
     setToggleSidebarIsOpen(state, action) {
@@ -11,6 +13,12 @@ const uiSlice = createSlice({
     },
     setToggleSidebarIsClose(state, action) {
       state.toggleSidebarIsOpen = false;
+    },
+    setSidebarWidth(state, action) {
+      state.sidebarWidth = action.payload;
+    },
+    setSidebarHeight(state, action) {
+      state.sidebarHeight = action.payload;
     },
   },
 });
