@@ -10,6 +10,7 @@ import icons from "../../utils/icons";
 import PoiLayer from "./Layer/PoiLayer";
 import CompanyLayer from "./Layer/CompanyLayer";
 import GoHomeContorl from "./Control/GoHomeControl";
+import PoiPopup from "./Popup/PoiPopup";
 
 // In order to solve the bug in production: Uncaught ReferenceError: y is not defined
 // import maplibregl from "maplibre-gl";
@@ -24,6 +25,8 @@ const MapView = () => {
   const [cursor, setCursor] = useState("auto");
   const viewState = useSelector((state) => state.map.viewState);
   const mapStyle = useSelector((state) => state.map.mapStyle);
+  const hoveredFeature = useSelector((state) => state.map.hoveredFeature);
+  const popupIsOpen = useSelector((state) => state.map.popupIsOpen);
 
   const onMapLoad = useCallback(() => {
     // Add all icons to map
@@ -43,6 +46,51 @@ const MapView = () => {
 
     mapRef.current.on("dragend", () => {
       setCursor("auto");
+    });
+
+    let hoveredStateId = null;
+
+    mapRef.current.on("mouseenter", "poi", (e) => {
+      // Change cursor
+      mapRef.current.getCanvas().style.cursor = "pointer";
+
+      // Change feature style
+      let feature = e.features[0];
+      if (hoveredStateId !== null) {
+        mapRef.current.setFeatureState(
+          { source: "poi", id: hoveredStateId },
+          { hover: false }
+        );
+      }
+
+      hoveredStateId = e.features[0].id;
+      mapRef.current.setFeatureState(
+        { source: "poi", id: hoveredStateId },
+        { hover: true }
+      );
+
+      // Open popup window
+      dispatch(mapActions.setPopupIsOpen(true));
+      dispatch(mapActions.setHoveredFeature(feature));
+    });
+
+    mapRef.current.on("mouseleave", "poi", (e) => {
+      // Change cursor
+      mapRef.current.getCanvas().style.cursor = "auto";
+
+      // Change feature style
+      if (hoveredStateId !== null) {
+        mapRef.current.setFeatureState(
+          { source: "poi", id: hoveredStateId },
+          { hover: false }
+        );
+      }
+      hoveredStateId = null;
+
+      // Close popup window
+      // TODO: If mouse enter in popup window, don't close it
+      dispatch(mapActions.setPopupIsOpen(false));
+      dispatch(mapActions.setHoveredFeature(null));
     });
   }, [dispatch]);
 
@@ -79,6 +127,16 @@ const MapView = () => {
         {/* Custom layers */}
         <PoiLayer />
         <CompanyLayer />
+
+        {/* Popup */}
+        {/* TODO: Calculate position of feature in window to control popup anchor? */}
+        {popupIsOpen && (
+          <PoiPopup
+            feature={hoveredFeature}
+            anchor="bottom"
+            onClose={() => dispatch(mapActions.setPopupIsOpen(false))}
+          />
+        )}
       </Map>
     </Fragment>
   );

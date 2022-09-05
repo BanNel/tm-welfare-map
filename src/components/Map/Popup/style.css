@@ -1,0 +1,11 @@
+.maplibregl-popup {
+  max-width: unset !important;
+}
+
+.maplibregl-popup-content {
+  all: unset !important;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
