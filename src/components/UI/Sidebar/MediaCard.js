@@ -1,9 +1,6 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -22,13 +19,6 @@ export default function MediaCard(props) {
     <Card
       sx={{ overflow: "auto", width: "100%", height: "100%", boxShadow: 5 }}
     >
-      <CardMedia
-        sx={{ minHeight: "200px" }}
-        component="img"
-        height="20%"
-        image="https://avatars.githubusercontent.com/u/24354061?v=4"
-        alt="image"
-      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {props.properties.name}
@@ -67,12 +57,7 @@ export default function MediaCard(props) {
             </ListItemButton>
           </ListItem>
         </List>
-
-        <Divider sx={{ margin: "10px 0px 10px 0px" }} />
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-      </CardActions>
     </Card>
   );
 }
