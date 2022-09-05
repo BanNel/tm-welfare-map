@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/636.db9bcc9d.chunk.js","mappings":"sGAAAA,EAAQC,SAAW,WACfC,QAAQC,IAAI,0CACb,C","sources":["../node_modules/mapbox-gl/index.js"],"sourcesContent":["exports.printMsg = function() {\r\n    console.log(\"This is a message from the demo package\");\r\n  }"],"names":["exports","printMsg","console","log"],"sourceRoot":""}

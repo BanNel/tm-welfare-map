@@ -1,16 +1,31 @@
 {
   "files": {
-    "main.css": "/tm-welfare-map/static/css/main.073c9b0a.css",
-    "main.js": "/tm-welfare-map/static/js/main.ed106dff.js",
+    "main.css": "/tm-welfare-map/static/css/main.ff10d7fa.css",
+    "main.js": "/tm-welfare-map/static/js/main.db2c1ad6.js",
+    "static/js/636.db9bcc9d.chunk.js": "/tm-welfare-map/static/js/636.db9bcc9d.chunk.js",
     "static/js/787.54926cfe.chunk.js": "/tm-welfare-map/static/js/787.54926cfe.chunk.js",
-    "static/media/logo.svg": "/tm-welfare-map/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/poi.geojson": "/tm-welfare-map/static/media/poi.1309b51f7ad703aa6b9a.geojson",
+    "static/media/japanese_restaurant.svg": "/tm-welfare-map/static/media/japanese_restaurant.17f741b61630be5a57c7a31b03160235.svg",
+    "static/media/shop.svg": "/tm-welfare-map/static/media/shop.39ca260991d539a8a65e23a0486f25a4.svg",
+    "static/media/drink.svg": "/tm-welfare-map/static/media/drink.cd4bb7f1fe099cf548a9246e8455eccb.svg",
+    "static/media/sports.svg": "/tm-welfare-map/static/media/sports.9aae3ca10c87028e64997576b7986807.svg",
+    "static/media/beer.svg": "/tm-welfare-map/static/media/beer.91e496f27f840ac8f95e6cfaee7fb1bf.svg",
+    "static/media/burger.svg": "/tm-welfare-map/static/media/burger.43ef667a237ac6539b0588247d8b42cf.svg",
+    "static/media/cake.svg": "/tm-welfare-map/static/media/cake.f3a0ad5d2a937339ff142bce7d2e74e9.svg",
+    "static/media/fruit.svg": "/tm-welfare-map/static/media/fruit.8d5306fb8bb1aa177d060d4139e9f4ab.svg",
+    "static/media/wine.svg": "/tm-welfare-map/static/media/wine.854086d09532db2d6e498a7add00faf2.svg",
+    "static/media/bread.svg": "/tm-welfare-map/static/media/bread.c438fa12fd6f5945ca3c556f9bc5be49.svg",
+    "static/media/trend_micro.svg": "/tm-welfare-map/static/media/trend_micro.85b5efabd7c7ffe9b1009c6ac5c25f92.svg",
+    "static/media/cafe.svg": "/tm-welfare-map/static/media/cafe.dd79829a018557048eb02cc22b35463f.svg",
+    "static/media/general_restaurant.svg": "/tm-welfare-map/static/media/general_restaurant.a8c39e1731e4fe15e3a2627ed5cc8328.svg",
     "index.html": "/tm-welfare-map/index.html",
-    "main.073c9b0a.css.map": "/tm-welfare-map/static/css/main.073c9b0a.css.map",
-    "main.ed106dff.js.map": "/tm-welfare-map/static/js/main.ed106dff.js.map",
+    "main.ff10d7fa.css.map": "/tm-welfare-map/static/css/main.ff10d7fa.css.map",
+    "main.db2c1ad6.js.map": "/tm-welfare-map/static/js/main.db2c1ad6.js.map",
+    "636.db9bcc9d.chunk.js.map": "/tm-welfare-map/static/js/636.db9bcc9d.chunk.js.map",
     "787.54926cfe.chunk.js.map": "/tm-welfare-map/static/js/787.54926cfe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.ed106dff.js"
+    "static/css/main.ff10d7fa.css",
+    "static/js/main.db2c1ad6.js"
   ]
 }
