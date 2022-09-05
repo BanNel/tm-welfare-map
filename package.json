@@ -4,17 +4,28 @@
   "homepage": "https://bannel.github.io/tm-welfare-map",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.3",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "mapbox-gl": "npm:empty-npm-package@^1.0.0",
+    "maplibre-gl": "^2.4.0",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-map-gl": "^7.0.19",
+    "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-localhost": "PUBLIC_URL=/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,0 +1,56 @@
+.rounded-rect {
+  background: white;
+  border-radius: 0px 10px 10px 0px;
+  box-shadow: 2px 0px 50px -25px black;
+}
+
+.flex-center {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-center.left {
+  left: 0px;
+}
+
+.flex-center.bottom {
+  bottom: 0px;
+}
+
+.sidebar-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  color: gray;
+}
+
+.sidebar {
+  transition: transform 1s;
+  z-index: 1;
+  width: 30vw;
+  height: 100%;
+}
+
+.sidebar_bottom {
+  overflow: auto;
+  transition: transform 1s;
+  z-index: 3;
+  width: 100vw;
+  height: 50vh;
+}
+
+/*
+  The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
+  The toggleSidebar() function removes this class from the element in order to expand it.
+*/
+.left.collapsed {
+  transform: translateX(-30vw);
+}
+
+.bottom.collapsed {
+  transform: translateY(50vh);
+}
