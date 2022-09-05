@@ -26,6 +26,7 @@ const layerStyle = {
     "text-halo-color": "#ffffff",
     "text-halo-width": 1,
   },
+  filter: ["==", "status", "Active" ],
 };
 
 const PoiLayer = () => {
