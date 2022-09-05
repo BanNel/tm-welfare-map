@@ -48,7 +48,6 @@ const mapSlice = createSlice({
     mapStyle: defaultMapStyle,
     poiGeojson: null,
     hoveredFeature: null,
-    popupIsOpen: false,
   },
   reducers: {
     setViewState(state, action) {
@@ -59,9 +58,6 @@ const mapSlice = createSlice({
     },
     setHoveredFeature(state, action) {
       state.hoveredFeature = action.payload;
-    },
-    setPopupIsOpen(state, action) {
-      state.popupIsOpen = action.payload;
     },
   },
 });

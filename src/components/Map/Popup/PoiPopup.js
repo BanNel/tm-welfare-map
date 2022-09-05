@@ -12,7 +12,6 @@ const PoiPopup = (props) => {
       <Popup
         longitude={lng}
         latitude={lat}
-        anchor={props.anchor}
         onClose={props.onClose}
       >
         <MediaCard properties={feature.properties} />

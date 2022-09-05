@@ -26,7 +26,6 @@ const MapView = () => {
   const viewState = useSelector((state) => state.map.viewState);
   const mapStyle = useSelector((state) => state.map.mapStyle);
   const hoveredFeature = useSelector((state) => state.map.hoveredFeature);
-  const popupIsOpen = useSelector((state) => state.map.popupIsOpen);
 
   const onMapLoad = useCallback(() => {
     // Add all icons to map
@@ -70,7 +69,6 @@ const MapView = () => {
       );
 
       // Open popup window
-      dispatch(mapActions.setPopupIsOpen(true));
       dispatch(mapActions.setHoveredFeature(feature));
     });
 
@@ -86,11 +84,6 @@ const MapView = () => {
         );
       }
       hoveredStateId = null;
-
-      // Close popup window
-      // TODO: If mouse enter in popup window, don't close it
-      dispatch(mapActions.setPopupIsOpen(false));
-      dispatch(mapActions.setHoveredFeature(null));
     });
   }, [dispatch]);
 
@@ -129,12 +122,10 @@ const MapView = () => {
         <CompanyLayer />
 
         {/* Popup */}
-        {/* TODO: Calculate position of feature in window to control popup anchor? */}
-        {popupIsOpen && (
+        {hoveredFeature !== null && (
           <PoiPopup
             feature={hoveredFeature}
-            anchor="bottom"
-            onClose={() => dispatch(mapActions.setPopupIsOpen(false))}
+            onClose={() => dispatch(mapActions.setHoveredFeature(null))}
           />
         )}
       </Map>

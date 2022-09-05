@@ -3,9 +3,7 @@
 }
 
 .maplibregl-popup-content {
-  all: unset !important;
-}
-
-.mapboxgl-popup-close-button {
-  display: none;
+  background: unset;
+  box-shadow: unset;
+  padding: unset;
 }
