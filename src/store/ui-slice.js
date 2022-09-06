@@ -4,6 +4,10 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     toggleSidebarIsOpen: false,
+    sidebarWidth: 0,
+    sidebarHeight: 0,
+    fuzzySearchKeyword: null,
+    fuzzySearchOutput: [],
   },
   reducers: {
     setToggleSidebarIsOpen(state, action) {
@@ -11,6 +15,18 @@ const uiSlice = createSlice({
     },
     setToggleSidebarIsClose(state, action) {
       state.toggleSidebarIsOpen = false;
+    },
+    setSidebarWidth(state, action) {
+      state.sidebarWidth = action.payload;
+    },
+    setSidebarHeight(state, action) {
+      state.sidebarHeight = action.payload;
+    },
+    setFuzzySearchOuput(state, action) {
+      state.fuzzySearchOutput = action.payload;
+    },
+    setFuzzySearchKeyword(state, action) {
+      state.fuzzySearchKeyword = action.payload;
     },
   },
 });

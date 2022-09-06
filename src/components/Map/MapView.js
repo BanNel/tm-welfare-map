@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, Fragment } from "react";
+import { useRef, useState, useCallback, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { mapActions } from "../../store/map-slice";
 import { fetchPoiGeojson } from "../../store/map-actions";
@@ -18,7 +18,7 @@ import PoiPopup from "./Popup/PoiPopup";
 import maplibregl from "!maplibre-gl"; // ! is important here
 import maplibreglWorker from "maplibre-gl/dist/maplibre-gl-csp-worker";
 import { uiActions } from "../../store/ui-slice";
-import { isBrowser } from "react-device-detect";
+import { isBrowser, isMobile } from "react-device-detect";
 maplibregl.workerClass = maplibreglWorker;
 
 const MapView = () => {
@@ -28,6 +28,37 @@ const MapView = () => {
   const viewState = useSelector((state) => state.map.viewState);
   const mapStyle = useSelector((state) => state.map.mapStyle);
   const hoveredFeature = useSelector((state) => state.map.hoveredFeature);
+  const clickedFeature = useSelector((state) => state.map.clickedFeature);
+  const sidebarWidth = useSelector((state) => state.ui.sidebarWidth);
+  const sidebarHeight = useSelector((state) => state.ui.sidebarHeight);
+  const toggleSidebarIsOpen = useSelector(
+    (state) => state.ui.toggleSidebarIsOpen
+  );
+
+  useEffect(() => {
+    if (!toggleSidebarIsOpen) return;
+    if (clickedFeature === null) return;
+
+    // Use POI coordinates as the center of the map display
+    // Consider the width and height of the sidebar to padding map
+    if (isBrowser) {
+      mapRef.current.easeTo({
+        center: clickedFeature.geometry.coordinates,
+        zoom: 15,
+        padding: { left: sidebarWidth },
+        duration: 1500,
+      });
+    }
+
+    if (isMobile) {
+      mapRef.current.easeTo({
+        center: clickedFeature.geometry.coordinates,
+        zoom: 15,
+        padding: { bottom: sidebarHeight },
+        duration: 1500,
+      });
+    }
+  }, [clickedFeature, toggleSidebarIsOpen, sidebarWidth, sidebarHeight]);
 
   const onMapLoad = useCallback(() => {
     // Add all icons to map
@@ -113,12 +144,6 @@ const MapView = () => {
         // TODO: 更換當前 focus feature 的 icon
         dispatch(mapActions.setClickedFeature(feature));
         dispatch(uiActions.setToggleSidebarIsOpen());
-        // TODO: 修改為在某個 bounds 外就會平移到中心 (easeTo, padding, duration)
-        mapRef.current.flyTo({
-          center: feature.geometry.coordinates,
-          curve: 0,
-          duration: 1000,
-        });
       }
     });
   }, [dispatch]);
