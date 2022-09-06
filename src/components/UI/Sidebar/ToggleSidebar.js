@@ -18,7 +18,7 @@ const ToggleSidebar = () => {
   // Save sidebar width and heigth for padding map
   const mobileSidebarRef = useRef();
   const broswerSidebarRef = useRef();
-  
+
   useEffect(() => {
     if (isBrowser) {
       const width = broswerSidebarRef.current.clientWidth;
@@ -45,7 +45,10 @@ const ToggleSidebar = () => {
             id="left"
             className={`sidebar flex-center left ${isCollasped}`}
           >
-            <Box className="sidebar-content rounded-rect flex-center">
+            <Box
+              sx={{ paddingTop: "150px" }}
+              className="sidebar-content rounded-rect flex-center"
+            >
               {clickedFeature !== null && (
                 <MediaCard properties={clickedFeature.properties} />
               )}

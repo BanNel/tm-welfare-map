@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, Fragment } from "react";
+import { useRef, useState, useCallback, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { mapActions } from "../../store/map-slice";
 import { fetchPoiGeojson } from "../../store/map-actions";
@@ -28,8 +28,37 @@ const MapView = () => {
   const viewState = useSelector((state) => state.map.viewState);
   const mapStyle = useSelector((state) => state.map.mapStyle);
   const hoveredFeature = useSelector((state) => state.map.hoveredFeature);
+  const clickedFeature = useSelector((state) => state.map.clickedFeature);
   const sidebarWidth = useSelector((state) => state.ui.sidebarWidth);
   const sidebarHeight = useSelector((state) => state.ui.sidebarHeight);
+  const toggleSidebarIsOpen = useSelector(
+    (state) => state.ui.toggleSidebarIsOpen
+  );
+
+  useEffect(() => {
+    if (!toggleSidebarIsOpen) return;
+    if (clickedFeature === null) return;
+
+    // Use POI coordinates as the center of the map display
+    // Consider the width and height of the sidebar to padding map
+    if (isBrowser) {
+      mapRef.current.easeTo({
+        center: clickedFeature.geometry.coordinates,
+        zoom: 15,
+        padding: { left: sidebarWidth },
+        duration: 1500,
+      });
+    }
+
+    if (isMobile) {
+      mapRef.current.easeTo({
+        center: clickedFeature.geometry.coordinates,
+        zoom: 15,
+        padding: { bottom: sidebarHeight },
+        duration: 1500,
+      });
+    }
+  }, [clickedFeature, toggleSidebarIsOpen, sidebarWidth, sidebarHeight]);
 
   const onMapLoad = useCallback(() => {
     // Add all icons to map
@@ -115,27 +144,9 @@ const MapView = () => {
         // TODO: 更換當前 focus feature 的 icon
         dispatch(mapActions.setClickedFeature(feature));
         dispatch(uiActions.setToggleSidebarIsOpen());
-
-        // Use POI coordinates as the center of the map display
-        // Consider the width and height of the sidebar to padding map
-        if (isBrowser) {
-          mapRef.current.easeTo({
-            center: feature.geometry.coordinates,
-            padding: { left: sidebarWidth },
-            duration: 1000,
-          });
-        }
-
-        if (isMobile) {
-          mapRef.current.easeTo({
-            center: feature.geometry.coordinates,
-            padding: { bottom: sidebarHeight },
-            duration: 1000,
-          });
-        }
       }
     });
-  }, [dispatch, sidebarWidth, sidebarHeight]);
+  }, [dispatch]);
 
   const onMove = useCallback(
     (e) => {

@@ -17,7 +17,7 @@ export default function MediaCard(props) {
   // TODO: focus feature 更新後，初始化 Card scroll。
   return (
     <Card
-      sx={{ overflow: "auto", width: "100%", height: "100%", boxShadow: 5 }}
+      sx={{ overflow: "auto", width: "100%", height: "100%", borderRadius: 0 }}
     >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

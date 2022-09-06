@@ -6,6 +6,7 @@ const uiSlice = createSlice({
     toggleSidebarIsOpen: false,
     sidebarWidth: 0,
     sidebarHeight: 0,
+    fuzzySearchOutput: [],
   },
   reducers: {
     setToggleSidebarIsOpen(state, action) {
@@ -19,6 +20,9 @@ const uiSlice = createSlice({
     },
     setSidebarHeight(state, action) {
       state.sidebarHeight = action.payload;
+    },
+    setFuzzySearchOuput(state, action) {
+      state.fuzzySearchOutput = action.payload;
     },
   },
 });
