@@ -6,6 +6,7 @@ const uiSlice = createSlice({
     toggleSidebarIsOpen: false,
     sidebarWidth: 0,
     sidebarHeight: 0,
+    fuzzySearchKeyword: null,
     fuzzySearchOutput: [],
   },
   reducers: {
@@ -23,6 +24,9 @@ const uiSlice = createSlice({
     },
     setFuzzySearchOuput(state, action) {
       state.fuzzySearchOutput = action.payload;
+    },
+    setFuzzySearchKeyword(state, action) {
+      state.fuzzySearchKeyword = action.payload;
     },
   },
 });

@@ -1,11 +1,13 @@
 import { Fragment, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Divider } from "@mui/material";
 import MediaCard from "./MediaCard";
 import { isBrowser, isMobile } from "react-device-detect";
 
 import "./ToggleSidebar.css";
 import { uiActions } from "../../../store/ui-slice";
+import { mapActions } from "../../../store/map-slice";
+import SearchList from "../SearchList/SearchList";
 
 const ToggleSidebar = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,10 @@ const ToggleSidebar = () => {
   );
   const clickedFeature = useSelector((state) => state.map.clickedFeature);
   let isCollasped = toggleSidebarIsOpen ? "" : "collapsed";
+  const fuzzySearchKeyword = useSelector(
+    (state) => state.ui.fuzzySearchKeyword
+  );
+  const fuzzySearchOutput = useSelector((state) => state.ui.fuzzySearchOutput);
 
   // Save sidebar width and heigth for padding map
   const mobileSidebarRef = useRef();
@@ -35,6 +41,11 @@ const ToggleSidebar = () => {
     }
   });
 
+  const onClickSearchListHandler = (feature) => {
+    dispatch(mapActions.setClickedFeature(feature));
+    dispatch(uiActions.setToggleSidebarIsOpen());
+  };
+
   return (
     <Fragment>
       <Grid sx={{ flexGrow: 1 }} container>
@@ -52,6 +63,34 @@ const ToggleSidebar = () => {
               {clickedFeature !== null && (
                 <MediaCard feature={clickedFeature} />
               )}
+
+              {clickedFeature === null &&
+                fuzzySearchOutput.length !== 0 &&
+                fuzzySearchKeyword !== null && (
+                  <Box
+                    sx={{
+                      p: 2,
+                      height: "90%",
+                      overflow: "auto",
+                      paddingBottom: "100px",
+                    }}
+                  >
+                    {fuzzySearchOutput.map((o, index) => {
+                      return (
+                        <Fragment key={index}>
+                          <SearchList
+                            item={o.item}
+                            keyword={fuzzySearchKeyword}
+                            onClick={() => {
+                              onClickSearchListHandler(o.item);
+                            }}
+                          />
+                          <Divider sx={{ margin: "10px 0px 10px 0px" }} />
+                        </Fragment>
+                      );
+                    })}
+                  </Box>
+                )}
             </Box>
           </Box>
         </Grid>
@@ -66,6 +105,33 @@ const ToggleSidebar = () => {
               {clickedFeature !== null && (
                 <MediaCard feature={clickedFeature} />
               )}
+
+              {clickedFeature === null &&
+                fuzzySearchOutput.length !== 0 &&
+                fuzzySearchKeyword !== null && (
+                  <Box
+                    sx={{
+                      p: 2,
+                      height: "100%",
+                      overflow: "auto"
+                    }}
+                  >
+                    {fuzzySearchOutput.map((o, index) => {
+                      return (
+                        <Fragment key={index}>
+                          <SearchList
+                            item={o.item}
+                            keyword={fuzzySearchKeyword}
+                            onClick={() => {
+                              onClickSearchListHandler(o.item);
+                            }}
+                          />
+                          <Divider sx={{ margin: "10px 0px 10px 0px" }} />
+                        </Fragment>
+                      );
+                    })}
+                  </Box>
+                )}
             </Box>
           </Box>
         </Grid>

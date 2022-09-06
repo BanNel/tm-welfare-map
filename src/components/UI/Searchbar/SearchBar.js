@@ -12,7 +12,7 @@ const SearchBar = () => {
     <Fragment>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container style={{ position: "absolute" }}>
-          <Grid item xs={12} sm={12} md={4} style={{ zIndex: 1 }}>
+          <Grid item xs={12} sm={12} md={3} style={{ zIndex: 1 }}>
             <Stack
               direction="row"
               justifyContent="flex-start"
