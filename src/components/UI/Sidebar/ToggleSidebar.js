@@ -50,7 +50,7 @@ const ToggleSidebar = () => {
               className="sidebar-content rounded-rect flex-center"
             >
               {clickedFeature !== null && (
-                <MediaCard properties={clickedFeature.properties} />
+                <MediaCard feature={clickedFeature} />
               )}
             </Box>
           </Box>
@@ -64,7 +64,7 @@ const ToggleSidebar = () => {
           >
             <Box className="sidebar-content rounded-rect flex-center">
               {clickedFeature !== null && (
-                <MediaCard properties={clickedFeature.properties} />
+                <MediaCard feature={clickedFeature} />
               )}
             </Box>
           </Box>

@@ -5,13 +5,13 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DiscountIcon from "@mui/icons-material/Discount";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import ClassChips from "./ClassChips";
+import OpenWithGoogleMaps from "./OpenWithGoogleMaps";
 
 export default function MediaCard(props) {
   // TODO: focus feature 更新後，初始化 Card scroll。
@@ -21,40 +21,39 @@ export default function MediaCard(props) {
     >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.properties.name}
+          {props.feature.properties.name}
         </Typography>
         <ClassChips
-          class={props.properties.class}
-          subclass={props.properties.subclass}
+          class={props.feature.properties.class}
+          subclass={props.feature.properties.subclass}
         />
-        <Divider sx={{ margin: "20px 0px 20px 0px" }} />
+
+        <Divider sx={{ margin: "10px 0px 10px 0px" }} />
+
+        <OpenWithGoogleMaps name={props.feature.properties.name} />
+
+        <Divider sx={{ margin: "10px 0px 10px 0px" }} />
 
         <List>
           <ListItem disablePadding>
-            <ListItemButton disableGutters>
               <ListItemIcon>
                 <LocationOnIcon color="primary" />
               </ListItemIcon>
-              <ListItemText primary={props.properties.address} />
-            </ListItemButton>
+              <ListItemText primary={props.feature.properties.address} />
           </ListItem>
-          <Divider variant="inset" component="li" />
+          <Divider sx={{margin:"10px 0px 10px 0px"}} component="li" />
           <ListItem disablePadding>
-            <ListItemButton disableGutters>
               <ListItemIcon>
                 <DiscountIcon color="primary" />
               </ListItemIcon>
-              <ListItemText primary={props.properties.description} />
-            </ListItemButton>
+              <ListItemText primary={props.feature.properties.description} />
           </ListItem>
-          <Divider variant="inset" component="li" />
+          <Divider sx={{margin:"10px 0px 10px 0px"}} component="li" />
           <ListItem disablePadding>
-            <ListItemButton disableGutters>
               <ListItemIcon>
                 <DateRangeIcon color="primary" />
               </ListItemIcon>
-              <ListItemText primary={props.properties.expiration} />
-            </ListItemButton>
+              <ListItemText primary={props.feature.properties.expiration} />
           </ListItem>
         </List>
       </CardContent>
