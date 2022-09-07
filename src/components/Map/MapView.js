@@ -42,6 +42,7 @@ const MapView = () => {
     // Use POI coordinates as the center of the map display
     // Consider the width and height of the sidebar to padding map
     if (isBrowser) {
+      if (clickedFeature.geometry === null) return;
       mapRef.current.easeTo({
         center: clickedFeature.geometry.coordinates,
         zoom: 15,
@@ -51,6 +52,7 @@ const MapView = () => {
     }
 
     if (isMobile) {
+      if (clickedFeature.geometry === null) return;
       mapRef.current.easeTo({
         center: clickedFeature.geometry.coordinates,
         zoom: 15,
