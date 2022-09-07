@@ -1,14 +1,11 @@
 import { useRef, useState, useCallback, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { mapActions } from "../../store/map-slice";
-import { fetchPoiGeojson } from "../../store/map-actions";
 
 import "./MapView.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Map, { NavigationControl, ScaleControl } from "react-map-gl";
 import icons from "../../utils/icons";
-import PoiLayer from "./Layer/PoiLayer";
-import CompanyLayer from "./Layer/CompanyLayer";
 import GoHomeContorl from "./Control/GoHomeControl";
 import PoiPopup from "./Popup/PoiPopup";
 
@@ -62,16 +59,20 @@ const MapView = () => {
     }
   }, [clickedFeature, toggleSidebarIsOpen, sidebarWidth, sidebarHeight]);
 
-  const onMapLoad = useCallback(() => {
-    // Add all icons to map
+  const loadIcons = useCallback(() => {
     for (const key of Object.keys(icons)) {
-      let img = new Image(20, 20);
+      let iconExists = mapRef.current.hasImage(key);
+      if (iconExists) continue;
+
+      let img = new Image(24, 24);
       img.onload = () => mapRef.current.addImage(key, img);
       img.src = icons[key];
     }
+  }, []);
 
-    // Fetch poi geojson from static file
-    dispatch(fetchPoiGeojson());
+  const onMapLoad = useCallback(() => {
+    // Add all icons to map
+    loadIcons();
 
     // Set cursor
     mapRef.current.on("dragstart", () => {
@@ -148,7 +149,7 @@ const MapView = () => {
         dispatch(uiActions.setToggleSidebarIsOpen());
       }
     });
-  }, [dispatch]);
+  }, [dispatch, loadIcons]);
 
   const onMove = useCallback(
     (e) => {
@@ -179,10 +180,6 @@ const MapView = () => {
           lnglat={[viewState.longitude, viewState.latitude]}
           zoom={viewState.zoom}
         />
-
-        {/* Custom layers */}
-        <PoiLayer />
-        <CompanyLayer />
 
         {/* Popup */}
         {hoveredFeature !== null && (
