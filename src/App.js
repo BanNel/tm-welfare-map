@@ -5,6 +5,10 @@ import ToggleSidebar from "./components/UI/Sidebar/ToggleSidebar";
 import SearchBar from "./components/UI/Searchbar/SearchBar";
 import { fetchCompanyGeojson, fetchPoiGeojson } from "./store/map-actions";
 import { useDispatch } from "react-redux";
+import ReactGA from 'react-ga';
+
+const TRACKING_ID = "G-DRY30JQH7K"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
   const dispatch = useDispatch();
