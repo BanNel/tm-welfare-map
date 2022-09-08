@@ -9,6 +9,7 @@ import ReactGA from 'react-ga';
 
 const TRACKING_ID = "G-DRY30JQH7K"; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const dispatch = useDispatch();
