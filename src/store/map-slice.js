@@ -40,7 +40,7 @@ const mapSlice = createSlice({
     },
     setCompanyGeojson(state, action) {
       state.companyGeojson = action.payload;
-      
+
       // Update mapStyle company geojson source
       state.mapStyle = {
         ...state.mapStyle,
