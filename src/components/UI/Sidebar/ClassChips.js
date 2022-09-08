@@ -9,7 +9,7 @@ export default function ClassChips(props) {
     <Stack direction="row" spacing={1}>
       <Chip color="primary" label={props.class} variant="outlined" />
       <Chip
-        avatar={<Avatar alt={props.subclass} src={icons[props.subclass]} />}
+        avatar={<Avatar alt={props.subclass} src={icons[props.subclass].file} />}
         label={props.subclass}
         variant="outlined"
       />
