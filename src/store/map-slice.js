@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { defaultMapStyle } from "./map-style";
 
 const defaultViewState = {
   latitude: 25.02312941733473,
@@ -8,45 +9,13 @@ const defaultViewState = {
     '<a href="https://www.trendmicro.com/" target="_blank">&copy; Trend Micro Inc.</a> ',
 };
 
-const defaultMapStyle = {
-  version: 8,
-  sources: {
-    stamen_toner: {
-      type: "raster",
-      tiles: ["https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"],
-      tileSize: 256,
-      attribution:
-        'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
-    },
-  },
-  sprite: "",
-  glyphs: "https://yuchuntsao.github.io/fonts/{fontstack}/{range}.pbf",
-  layers: [
-    {
-      id: "background",
-      type: "background",
-      minzoom: 0,
-      paint: {
-        "background-color": "rgba(255, 255, 255, 1)",
-      },
-    },
-    {
-      id: "stamen_toner",
-      type: "raster",
-      source: "stamen_toner",
-      paint: {
-        "raster-opacity": 0.3,
-      },
-    },
-  ],
-};
-
 const mapSlice = createSlice({
   name: "map",
   initialState: {
     viewState: defaultViewState,
     mapStyle: defaultMapStyle,
     poiGeojson: null,
+    companyGeojson: null,
     hoveredFeature: null,
     clickedFeature: null,
   },
@@ -56,6 +25,33 @@ const mapSlice = createSlice({
     },
     setPoiGeojson(state, action) {
       state.poiGeojson = action.payload;
+
+      // Update mapStyle poi geojson source
+      state.mapStyle = {
+        ...state.mapStyle,
+        sources: {
+          ...state.mapStyle.sources,
+          poi_geojson: {
+            ...state.mapStyle.sources.poi_geojson,
+            data: action.payload,
+          },
+        },
+      };
+    },
+    setCompanyGeojson(state, action) {
+      state.companyGeojson = action.payload;
+
+      // Update mapStyle company geojson source
+      state.mapStyle = {
+        ...state.mapStyle,
+        sources: {
+          ...state.mapStyle.sources,
+          company_geojson: {
+            ...state.mapStyle.sources.company_geojson,
+            data: action.payload,
+          },
+        },
+      };
     },
     setHoveredFeature(state, action) {
       state.hoveredFeature = action.payload;
