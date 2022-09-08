@@ -5,7 +5,7 @@ import ToggleSidebar from "./components/UI/Sidebar/ToggleSidebar";
 import SearchBar from "./components/UI/Searchbar/SearchBar";
 import { fetchCompanyGeojson, fetchPoiGeojson } from "./store/map-actions";
 import { useDispatch } from "react-redux";
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 const TRACKING_ID = "G-DRY30JQH7K"; // OUR_TRACKING_ID
 
@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     ReactGA.initialize(TRACKING_ID);
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
   }, []);
 
   return (
