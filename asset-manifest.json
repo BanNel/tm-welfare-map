@@ -1,31 +1,39 @@
 {
   "files": {
     "main.css": "/tm-welfare-map/static/css/main.b9d9e0fc.css",
-    "main.js": "/tm-welfare-map/static/js/main.6db1632d.js",
+    "main.js": "/tm-welfare-map/static/js/main.971c2c46.js",
     "static/js/636.db9bcc9d.chunk.js": "/tm-welfare-map/static/js/636.db9bcc9d.chunk.js",
     "static/js/787.54926cfe.chunk.js": "/tm-welfare-map/static/js/787.54926cfe.chunk.js",
-    "static/media/poi.geojson": "/tm-welfare-map/static/media/poi.ace894e18606d0ec2b78.geojson",
+    "static/media/poi.geojson": "/tm-welfare-map/static/media/poi.8c29acdc9636057c57be.geojson",
     "static/media/japanese_restaurant.svg": "/tm-welfare-map/static/media/japanese_restaurant.17f741b61630be5a57c7a31b03160235.svg",
+    "static/media/selected_icon.svg": "/tm-welfare-map/static/media/selected_icon.85298d6504d0abff3f665791a027c804.svg",
+    "static/media/medical.svg": "/tm-welfare-map/static/media/medical.243422c22e5e1df347e142d38e526762.svg",
+    "static/media/clothes.svg": "/tm-welfare-map/static/media/clothes.6d2025f283cde7a72a5b6de3aecdb615.svg",
     "static/media/shop.svg": "/tm-welfare-map/static/media/shop.39ca260991d539a8a65e23a0486f25a4.svg",
+    "static/media/car.svg": "/tm-welfare-map/static/media/car.b1364b5a577717d8aebd968c5e041075.svg",
+    "static/media/company.geojson": "/tm-welfare-map/static/media/company.38d490d5fe9529306808.geojson",
     "static/media/drink.svg": "/tm-welfare-map/static/media/drink.cd4bb7f1fe099cf548a9246e8455eccb.svg",
     "static/media/sports.svg": "/tm-welfare-map/static/media/sports.9aae3ca10c87028e64997576b7986807.svg",
     "static/media/beer.svg": "/tm-welfare-map/static/media/beer.91e496f27f840ac8f95e6cfaee7fb1bf.svg",
     "static/media/burger.svg": "/tm-welfare-map/static/media/burger.43ef667a237ac6539b0588247d8b42cf.svg",
     "static/media/cake.svg": "/tm-welfare-map/static/media/cake.f3a0ad5d2a937339ff142bce7d2e74e9.svg",
+    "static/media/laptop.svg": "/tm-welfare-map/static/media/laptop.149b4b345ea805ba9495a06c1a8e5896.svg",
     "static/media/fruit.svg": "/tm-welfare-map/static/media/fruit.8d5306fb8bb1aa177d060d4139e9f4ab.svg",
     "static/media/wine.svg": "/tm-welfare-map/static/media/wine.854086d09532db2d6e498a7add00faf2.svg",
     "static/media/bread.svg": "/tm-welfare-map/static/media/bread.c438fa12fd6f5945ca3c556f9bc5be49.svg",
     "static/media/trend_micro.svg": "/tm-welfare-map/static/media/trend_micro.85b5efabd7c7ffe9b1009c6ac5c25f92.svg",
+    "static/media/home.svg": "/tm-welfare-map/static/media/home.53732c85552d46f9657b0e2a8d4b0180.svg",
     "static/media/cafe.svg": "/tm-welfare-map/static/media/cafe.dd79829a018557048eb02cc22b35463f.svg",
+    "static/media/mobile.svg": "/tm-welfare-map/static/media/mobile.442dc8b042c5a4135056aebff45885d4.svg",
     "static/media/general_restaurant.svg": "/tm-welfare-map/static/media/general_restaurant.a8c39e1731e4fe15e3a2627ed5cc8328.svg",
     "index.html": "/tm-welfare-map/index.html",
     "main.b9d9e0fc.css.map": "/tm-welfare-map/static/css/main.b9d9e0fc.css.map",
-    "main.6db1632d.js.map": "/tm-welfare-map/static/js/main.6db1632d.js.map",
+    "main.971c2c46.js.map": "/tm-welfare-map/static/js/main.971c2c46.js.map",
     "636.db9bcc9d.chunk.js.map": "/tm-welfare-map/static/js/636.db9bcc9d.chunk.js.map",
     "787.54926cfe.chunk.js.map": "/tm-welfare-map/static/js/787.54926cfe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b9d9e0fc.css",
-    "static/js/main.6db1632d.js"
+    "static/js/main.971c2c46.js"
   ]
 }
