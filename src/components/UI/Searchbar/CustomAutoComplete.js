@@ -5,7 +5,7 @@ import { uiActions } from "../../../store/ui-slice";
 import { Autocomplete, TextField } from "@mui/material";
 import Fuse from "fuse.js";
 import SearchList from "../SearchList/SearchList";
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 const eventTrack = (category, action, label) => {
   console.log("GA event:", category, ":", action, ":", label);
