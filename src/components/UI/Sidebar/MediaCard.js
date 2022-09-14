@@ -55,6 +55,27 @@ export default function MediaCard(props) {
               </ListItemIcon>
               <ListItemText primary={props.feature.properties.expiration} />
           </ListItem>
+          <Divider sx={{margin:"10px 0px 10px 0px"}} component="li" />
+          <ListItem disablePadding>
+              <ListItemIcon>
+                <DateRangeIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary={props.feature.properties.start_date} />
+          </ListItem>
+          <Divider sx={{margin:"10px 0px 10px 0px"}} component="li" />
+          <ListItem disablePadding>
+              <ListItemIcon>
+                <DateRangeIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary={props.feature.properties.shop_url} />
+          </ListItem>
+          <Divider sx={{margin:"10px 0px 10px 0px"}} component="li" />
+          <ListItem disablePadding>
+              <ListItemIcon>
+                <DateRangeIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary={props.feature.properties.contract_url} />
+          </ListItem>
         </List>
       </CardContent>
     </Card>
