@@ -4,7 +4,11 @@ import { mapActions } from "../../store/map-slice";
 
 import "./MapView.css";
 import "maplibre-gl/dist/maplibre-gl.css";
-import Map, { NavigationControl, ScaleControl } from "react-map-gl";
+import Map, {
+  NavigationControl,
+  GeolocateControl,
+  ScaleControl,
+} from "react-map-gl";
 import icons from "../../utils/icons";
 import GoHomeContorl from "./Control/GoHomeControl";
 import PoiPopup from "./Popup/PoiPopup";
@@ -232,6 +236,18 @@ const MapView = () => {
         cursor={cursor}
       >
         <NavigationControl position="bottom-right" />
+        <GeolocateControl
+          position="bottom-right"
+          showUserHeading={true}
+          showAccuracyCircle={true}
+          positionOptions={{
+            enableHighAccuracy: true,
+          }}
+          trackUserLocation={true}
+          onGeolocate={(e) => {}}
+          onTrackUserLocationStart={(e) => {}}
+          onTrackUserLocationEnd={(e) => {}}
+        />
         <ScaleControl />
         <GoHomeContorl
           position="bottom-right"
