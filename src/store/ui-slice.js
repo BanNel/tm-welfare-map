@@ -8,6 +8,9 @@ const uiSlice = createSlice({
     sidebarHeight: 0,
     fuzzySearchKeyword: null,
     fuzzySearchOutput: [],
+    drawerIsOpen: false,
+    taxIdModalIsOpen: false,
+    currentTaxId: { name: "", number: null },
   },
   reducers: {
     setToggleSidebarIsOpen(state, action) {
@@ -27,6 +30,15 @@ const uiSlice = createSlice({
     },
     setFuzzySearchKeyword(state, action) {
       state.fuzzySearchKeyword = action.payload;
+    },
+    toggleDrawer(state, action) {
+      state.drawerIsOpen = !state.drawerIsOpen;
+    },
+    toggleTaxIdModal(state, action) {
+      state.taxIdModalIsOpen = !state.taxIdModalIsOpen;
+    },
+    setCurrentTaxId(state, action) {
+      state.currentTaxId = action.payload;
     },
   },
 });
