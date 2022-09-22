@@ -75,6 +75,32 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "3C"]],
     },
     {
+      id: "電信",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "text-anchor": "top",
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-offset": [0, 0.8],
+        "text-padding": 2,
+        "text-size": 14,
+        "icon-image": "{subclass}",
+        "text-max-width": 30,
+      },
+      paint: {
+        "text-color": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          "rgba(3, 117, 214, 1)",
+          "#133B8F",
+        ],
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1,
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "電信"]],
+    },
+    {
       id: "transportation",
       source: "poi_geojson",
       type: "symbol",
@@ -98,11 +124,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: [
-        "all",
-        ["==", "status", "Active"],
-        ["==", "class", "transportation"],
-      ],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "交通"]],
     },
     {
       id: "shop",
@@ -128,7 +150,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: ["all", ["==", "status", "Active"], ["==", "class", "shop"]],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "商店"]],
     },
     {
       id: "home",
@@ -154,7 +176,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: ["all", ["==", "status", "Active"], ["==", "class", "home"]],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "居家"]],
     },
     {
       id: "travel",
@@ -180,7 +202,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: ["all", ["==", "status", "Active"], ["==", "class", "travel"]],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "旅遊"]],
     },
     {
       id: "clothes",
@@ -206,7 +228,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: ["all", ["==", "status", "Active"], ["==", "class", "clothes"]],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "服飾"]],
     },
     {
       id: "sports",
@@ -232,7 +254,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: ["all", ["==", "status", "Active"], ["==", "class", "sports"]],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "運動"]],
     },
     {
       id: "medical",
@@ -258,7 +280,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: ["all", ["==", "status", "Active"], ["==", "class", "medical"]],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "醫療"]],
     },
     {
       id: "restaurant",
@@ -284,11 +306,7 @@ export const defaultMapStyle = {
         "text-halo-color": "#ffffff",
         "text-halo-width": 1,
       },
-      filter: [
-        "all",
-        ["==", "status", "Active"],
-        ["==", "class", "restaurant"],
-      ],
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "餐廳"]],
     },
     {
       id: "company",
