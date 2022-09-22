@@ -3,12 +3,13 @@ import { Fragment, useEffect } from "react";
 import MapView from "./components/Map/MapView";
 import ToggleSidebar from "./components/UI/Sidebar/ToggleSidebar";
 import SearchBar from "./components/UI/Searchbar/SearchBar";
+import InformationDrawer from "./components/UI/Drawer/InformationDrawer";
 import { fetchCompanyGeojson, fetchPoiGeojson } from "./store/map-actions";
 import { useDispatch } from "react-redux";
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
+import TaxIdModal from "./components/UI/Modal/TaxIdModal";
 
 const TRACKING_ID = "G-DRY30JQH7K"; // OUR_TRACKING_ID
-
 
 function App() {
   const dispatch = useDispatch();
@@ -26,13 +27,13 @@ function App() {
 
   return (
     <Fragment>
+      <InformationDrawer />
+      <TaxIdModal />
       <ToggleSidebar />
       <SearchBar />
       <MapView />
     </Fragment>
   );
 }
-
-
 
 export default App;

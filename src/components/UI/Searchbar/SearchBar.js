@@ -4,9 +4,16 @@ import { Grid, Box, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Stack from "@mui/material/Stack";
 import CustomAutoComplete from "./CustomAutoComplete";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../../store/ui-slice";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
   const poiGeojson = useSelector((state) => state.map.poiGeojson);
+
+  const toggleDrawer = () => {
+    dispatch(uiActions.toggleDrawer());
+  }
 
   return (
     <Fragment>
@@ -24,7 +31,7 @@ const SearchBar = () => {
                 backgroundColor: "rgba(255,255,255,0.8)",
               }}
             >
-              <IconButton sx={{ p: "10px" }} aria-label="menu">
+              <IconButton sx={{ p: "10px" }} aria-label="menu" onClick={toggleDrawer}>
                 <MenuIcon />
               </IconButton>
               <Grid item xs={12}>
