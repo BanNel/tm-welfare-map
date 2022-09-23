@@ -35,6 +35,7 @@ const MapView = () => {
   const toggleSidebarIsOpen = useSelector(
     (state) => state.ui.toggleSidebarIsOpen
   );
+  const windowSize = useSelector((state) => state.ui.windowSize);
 
   useEffect(() => {
     if (!toggleSidebarIsOpen) return;
@@ -231,7 +232,7 @@ const MapView = () => {
         mapLib={maplibregl}
         onLoad={onMapLoad}
         onMove={onMove}
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: windowSize.width + "px", height: windowSize.height + "px" }}
         ref={mapRef}
         cursor={cursor}
       >

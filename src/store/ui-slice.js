@@ -6,6 +6,7 @@ const uiSlice = createSlice({
     toggleSidebarIsOpen: false,
     sidebarWidth: 0,
     sidebarHeight: 0,
+    windowSize: null,
     fuzzySearchKeyword: null,
     fuzzySearchOutput: [],
     drawerIsOpen: false,
@@ -39,6 +40,9 @@ const uiSlice = createSlice({
     },
     setCurrentTaxId(state, action) {
       state.currentTaxId = action.payload;
+    },
+    setWindowSize(state, action) {
+      state.windowSize = action.payload;
     },
   },
 });
