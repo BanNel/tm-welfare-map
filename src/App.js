@@ -1,15 +1,17 @@
 import "./App.css";
 import { Fragment, useEffect } from "react";
-import MapView from "./components/Map/MapView";
-import ToggleSidebar from "./components/UI/Sidebar/ToggleSidebar";
-import SearchBar from "./components/UI/Searchbar/SearchBar";
-import InformationDrawer from "./components/UI/Drawer/InformationDrawer";
-import { fetchCompanyGeojson, fetchPoiGeojson } from "./store/map-actions";
 import { useDispatch } from "react-redux";
-import ReactGA from "react-ga4";
-import TaxIdModal from "./components/UI/Modal/TaxIdModal";
-import useResize from "./hooks/use-resize";
+import { fetchCompanyGeojson, fetchPoiGeojson } from "./store/map-actions";
 import { uiActions } from "./store/ui-slice";
+import useResize from "./hooks/use-resize";
+
+import MapView from "./components/Map/MapView";
+import TaxIdModal from "./components/UI/Modal/TaxIdModal";
+import SearchBar from "./components/UI/Searchbar/SearchBar";
+import ToggleSidebar from "./components/UI/Sidebar/ToggleSidebar";
+import InformationDrawer from "./components/UI/Drawer/InformationDrawer";
+
+import ReactGA from "react-ga4";
 
 const TRACKING_ID = "G-DRY30JQH7K"; // OUR_TRACKING_ID
 
@@ -38,11 +40,15 @@ function App() {
 
   return (
     <Fragment>
-      <InformationDrawer />
-      <TaxIdModal />
-      <ToggleSidebar />
-      <SearchBar />
-      {windowIsReady && <MapView />}
+      {windowIsReady && (
+        <Fragment>
+          <InformationDrawer />
+          <TaxIdModal />
+          <ToggleSidebar />
+          <SearchBar />
+          <MapView />
+        </Fragment>
+      )}
     </Fragment>
   );
 }

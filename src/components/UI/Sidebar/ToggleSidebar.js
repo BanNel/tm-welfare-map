@@ -1,13 +1,34 @@
 import { Fragment, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Grid, Divider } from "@mui/material";
-import MediaCard from "./MediaCard";
-import { isBrowser, isMobile } from "react-device-detect";
-
-import "./ToggleSidebar.css";
 import { uiActions } from "../../../store/ui-slice";
 import { mapActions } from "../../../store/map-slice";
+
+import MediaCard from "./MediaCard";
 import SearchList from "../SearchList/SearchList";
+import { isBrowser, isMobile } from "react-device-detect";
+
+import { Box, Grid, Divider } from "@mui/material";
+import { styled } from "@mui/system";
+
+const CustomBox = styled(Box)({
+  // sidebar-content
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  fontFamily: "Arial, Helvetica, sans-serif",
+  fontSize: "32px",
+  color: "gray",
+
+  // flex-center
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+
+  // rounded-rect
+  background: "white",
+  borderRadius: "0px 10px 10px 0px",
+  boxShadow: "2px 0px 50px -25px black",
+});
 
 const ToggleSidebar = () => {
   const dispatch = useDispatch();
@@ -20,6 +41,7 @@ const ToggleSidebar = () => {
     (state) => state.ui.fuzzySearchKeyword
   );
   const fuzzySearchOutput = useSelector((state) => state.ui.fuzzySearchOutput);
+  const windowSize = useSelector((state) => state.ui.windowSize);
 
   // Save sidebar width and heigth for padding map
   const mobileSidebarRef = useRef();
@@ -54,12 +76,20 @@ const ToggleSidebar = () => {
           <Box
             ref={broswerSidebarRef}
             id="left"
-            className={`sidebar flex-center left ${isCollasped}`}
+            sx={{
+              transition: "transform 1s",
+              zIndex: "1",
+              width: "25vw",
+              height: "100%",
+              position: "absolute",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              left: 0,
+              transform: isCollasped ? `translateX(-25vw)` : "",
+            }}
           >
-            <Box
-              sx={{ paddingTop: "150px" }}
-              className="sidebar-content rounded-rect flex-center"
-            >
+            <CustomBox sx={{ paddingTop: "150px" }}>
               {clickedFeature !== null && (
                 <MediaCard feature={clickedFeature} />
               )}
@@ -91,7 +121,7 @@ const ToggleSidebar = () => {
                     })}
                   </Box>
                 )}
-            </Box>
+            </CustomBox>
           </Box>
         </Grid>
         {/* Mobile */}
@@ -99,9 +129,25 @@ const ToggleSidebar = () => {
           <Box
             ref={mobileSidebarRef}
             id="bottom"
-            className={`sidebar_bottom flex-center bottom ${isCollasped}`}
+            sx={{
+              overflow: "auto",
+              transition: "transform 1s",
+              zIndex: 3,
+              width: windowSize.width + "px",
+              height: windowSize.height / 2 + "px",
+              borderRadius: "15px 15px 0px 0px",
+              boxShadow: "0px -1px 15px 0px #9e9e9e81",
+              top: windowSize.height / 2 + "px",
+              position: "absolute",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: isCollasped
+                ? `translateY(${windowSize.height / 2}px)`
+                : "",
+            }}
           >
-            <Box className="sidebar-content rounded-rect flex-center">
+            <CustomBox>
               {clickedFeature !== null && (
                 <MediaCard feature={clickedFeature} />
               )}
@@ -113,7 +159,7 @@ const ToggleSidebar = () => {
                     sx={{
                       p: 2,
                       height: "100%",
-                      overflow: "auto"
+                      overflow: "auto",
                     }}
                   >
                     {fuzzySearchOutput.map((o, index) => {
@@ -132,7 +178,7 @@ const ToggleSidebar = () => {
                     })}
                   </Box>
                 )}
-            </Box>
+            </CustomBox>
           </Box>
         </Grid>
       </Grid>
