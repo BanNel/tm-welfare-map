@@ -7,8 +7,8 @@ const useResize = () => {
     function handleResize() {
       // Set window width/height to state
       setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
       });
     }
     // Add event listener

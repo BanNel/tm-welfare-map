@@ -38,29 +38,38 @@ const MapView = () => {
   const windowSize = useSelector((state) => state.ui.windowSize);
 
   useEffect(() => {
-    if (!toggleSidebarIsOpen) return;
-    if (clickedFeature === null) return;
+    let identity = setTimeout(() => {
+      if (!toggleSidebarIsOpen) return;
+      if (clickedFeature === null) return;
 
-    // Use POI coordinates as the center of the map display
-    // Consider the width and height of the sidebar to padding map
-    if (isBrowser) {
-      if (clickedFeature.geometry === null) return;
-      mapRef.current.easeTo({
-        center: clickedFeature.geometry.coordinates,
-        padding: { left: sidebarWidth },
-        duration: 1500,
-      });
-    }
+      // Use POI coordinates as the center of the map display
+      // Consider the width and height of the sidebar to padding map
+      if (isBrowser) {
+        if (clickedFeature.geometry === null) return;
+        mapRef.current.easeTo({
+          center: clickedFeature.geometry.coordinates,
+          padding: { left: sidebarWidth },
+          duration: 1500,
+        });
+      }
 
-    if (isMobile) {
-      if (clickedFeature.geometry === null) return;
-      mapRef.current.easeTo({
-        center: clickedFeature.geometry.coordinates,
-        padding: { bottom: sidebarHeight },
-        duration: 1500,
-      });
-    }
-  }, [clickedFeature, toggleSidebarIsOpen, sidebarWidth, sidebarHeight]);
+      if (isMobile) {
+        if (clickedFeature.geometry === null) return;
+
+        let currentZoom = mapRef.current.getZoom();
+        if (currentZoom < 1) currentZoom = 1;
+
+        mapRef.current.easeTo({
+          center: clickedFeature.geometry.coordinates,
+          offset: [0, -sidebarHeight / 2],
+          zoom: currentZoom,
+          duration: 1500,
+        });
+      }
+    }, 100);
+
+    return () => clearTimeout(identity)
+  }, [toggleSidebarIsOpen, clickedFeature, sidebarWidth, sidebarHeight]);
 
   const loadIcons = useCallback(() => {
     for (const key of Object.keys(icons)) {
@@ -232,7 +241,10 @@ const MapView = () => {
         mapLib={maplibregl}
         onLoad={onMapLoad}
         onMove={onMove}
-        style={{ width: windowSize.width + "px", height: windowSize.height + "px" }}
+        style={{
+          width: windowSize.width + "px",
+          height: windowSize.height + "px",
+        }}
         ref={mapRef}
         cursor={cursor}
       >
