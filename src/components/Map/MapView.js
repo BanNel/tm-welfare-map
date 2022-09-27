@@ -242,6 +242,7 @@ const MapView = () => {
         onLoad={onMapLoad}
         onMove={onMove}
         style={{
+          position: "fixed",
           width: windowSize.width + "px",
           height: windowSize.height + "px",
         }}

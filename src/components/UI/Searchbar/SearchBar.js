@@ -13,13 +13,13 @@ const SearchBar = () => {
 
   const toggleDrawer = () => {
     dispatch(uiActions.toggleDrawer());
-  }
+  };
 
   return (
     <Fragment>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container style={{ position: "absolute" }}>
-          <Grid item xs={12} sm={12} md={3} style={{ zIndex: 1 }}>
+        <Grid container style={{ position: "fixed", zIndex: 2 }}>
+          <Grid item xs={12} sm={12} md={3}>
             <Stack
               direction="row"
               justifyContent="flex-start"
@@ -31,7 +31,11 @@ const SearchBar = () => {
                 backgroundColor: "rgba(255,255,255,0.8)",
               }}
             >
-              <IconButton sx={{ p: "10px" }} aria-label="menu" onClick={toggleDrawer}>
+              <IconButton
+                sx={{ p: "10px" }}
+                aria-label="menu"
+                onClick={toggleDrawer}
+              >
                 <MenuIcon />
               </IconButton>
               <Grid item xs={12}>
