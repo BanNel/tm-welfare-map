@@ -5,6 +5,7 @@ import { mapActions } from "../../store/map-slice";
 import "./MapView.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Map, {
+  AttributionControl,
   NavigationControl,
   GeolocateControl,
   ScaleControl,
@@ -59,17 +60,29 @@ const MapView = () => {
         let currentZoom = mapRef.current.getZoom();
         if (currentZoom < 1) currentZoom = 1;
 
+        let offset = [0, -sidebarHeight / 2];
+
+        if (windowSize.width > windowSize.height) {
+          offset = [sidebarWidth / 2, 0];
+        }
+
         mapRef.current.easeTo({
           center: clickedFeature.geometry.coordinates,
-          offset: [0, -sidebarHeight / 2],
+          offset: offset,
           zoom: currentZoom,
           duration: 1500,
         });
       }
     }, 100);
 
-    return () => clearTimeout(identity)
-  }, [toggleSidebarIsOpen, clickedFeature, sidebarWidth, sidebarHeight]);
+    return () => clearTimeout(identity);
+  }, [
+    toggleSidebarIsOpen,
+    clickedFeature,
+    sidebarWidth,
+    sidebarHeight,
+    windowSize,
+  ]);
 
   const loadIcons = useCallback(() => {
     for (const key of Object.keys(icons)) {
@@ -248,7 +261,12 @@ const MapView = () => {
         }}
         ref={mapRef}
         cursor={cursor}
+        attributionControl={false}
       >
+        <AttributionControl
+          customAttribution={viewState.customAttribution}
+          compact={true}
+        />
         <NavigationControl position="bottom-right" />
         <GeolocateControl
           position="bottom-right"

@@ -17,9 +17,13 @@ const SearchBar = () => {
 
   return (
     <Fragment>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container style={{ position: "fixed", zIndex: 2 }}>
-          <Grid item xs={12} sm={12} md={3}>
+      <Box className="overlay-searchbar" sx={{ flexGrow: 1 }}>
+        <Grid container>
+          <Grid
+            item
+            sx={{ width: { xs: "100vw", sm: "50vw", md: "30vw" } }}
+            style={{ position: "fixed", zIndex: 2 }}
+          >
             <Stack
               direction="row"
               justifyContent="flex-start"

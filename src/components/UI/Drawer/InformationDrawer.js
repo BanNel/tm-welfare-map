@@ -65,7 +65,12 @@ export default function InformationDrawer() {
   };
 
   const list = () => (
-    <Box sx={{ width: 300 }} onClick={toggleDrawer} onKeyDown={toggleDrawer}>
+    <Box
+      className="overlay-drawer"
+      sx={{ width: 300 }}
+      onClick={toggleDrawer}
+      onKeyDown={toggleDrawer}
+    >
       <List>
         <ListItem>
           <ListItemAvatar>
