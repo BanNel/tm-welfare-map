@@ -13,13 +13,17 @@ const SearchBar = () => {
 
   const toggleDrawer = () => {
     dispatch(uiActions.toggleDrawer());
-  }
+  };
 
   return (
     <Fragment>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container style={{ position: "absolute" }}>
-          <Grid item xs={12} sm={12} md={3} style={{ zIndex: 1 }}>
+      <Box className="overlay-searchbar" sx={{ flexGrow: 1 }}>
+        <Grid container>
+          <Grid
+            item
+            sx={{ width: { xs: "100vw", sm: "50vw", md: "30vw" } }}
+            style={{ position: "fixed", zIndex: 2 }}
+          >
             <Stack
               direction="row"
               justifyContent="flex-start"
@@ -31,7 +35,11 @@ const SearchBar = () => {
                 backgroundColor: "rgba(255,255,255,0.8)",
               }}
             >
-              <IconButton sx={{ p: "10px" }} aria-label="menu" onClick={toggleDrawer}>
+              <IconButton
+                sx={{ p: "10px" }}
+                aria-label="menu"
+                onClick={toggleDrawer}
+              >
                 <MenuIcon />
               </IconButton>
               <Grid item xs={12}>

@@ -70,7 +70,7 @@ const ToggleSidebar = () => {
 
   return (
     <Fragment>
-      <Grid sx={{ flexGrow: 1 }} container>
+      <Grid className="overlay-togglesidebar" sx={{ flexGrow: 1 }} container>
         {/* Desktop */}
         <Grid item sx={{ display: { xs: "none", md: "block" } }}>
           <Box
@@ -79,17 +79,24 @@ const ToggleSidebar = () => {
             sx={{
               transition: "transform 1s",
               zIndex: "1",
-              width: "25vw",
-              height: "100%",
+              width: { xs: "100vw", sm: "50vw", md: "30vw" },
+              height: { xs: "50%", sm: "100%", md: "100%" },
+              top: { xs: windowSize.height / 2 + "px", sm: "0px", md: "0px" },
               position: "absolute",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               left: 0,
-              transform: isCollasped ? `translateX(-25vw)` : "",
+              transform: {
+                xs: isCollasped ? `translateY(${windowSize.height / 2}px)` : "",
+                sm: isCollasped ? `translateX(-50vw)` : "",
+                md: isCollasped ? `translateX(-30vw)` : "",
+              },
             }}
           >
-            <CustomBox sx={{ paddingTop: "150px" }}>
+            <CustomBox
+              sx={{ paddingTop: { md: "150px", sm: "150px", xs: "0px" } }}
+            >
               {clickedFeature !== null && (
                 <MediaCard feature={clickedFeature} />
               )}
@@ -125,29 +132,31 @@ const ToggleSidebar = () => {
           </Box>
         </Grid>
         {/* Mobile */}
-        <Grid item sx={{ display: { xs: "block", md: "none" } }}>
+        <Grid item sx={{ display: { md: "none" } }}>
           <Box
             ref={mobileSidebarRef}
             id="bottom"
             sx={{
-              overflow: "auto",
               transition: "transform 1s",
-              zIndex: 3,
-              width: windowSize.width + "px",
-              height: windowSize.height / 2 + "px",
+              zIndex: 2,
+              width: { xs: "100vw", sm: "50vw", md: "30vw" },
+              height: { xs: windowSize.height / 2 + "px", sm: "100%" },
               borderRadius: "15px 15px 0px 0px",
               boxShadow: "0px -1px 15px 0px #9e9e9e81",
-              top: windowSize.height / 2 + "px",
-              position: "absolute",
+              top: { xs: windowSize.height / 2 + "px", sm: "0px" },
+              position: "fixed",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              transform: isCollasped
-                ? `translateY(${windowSize.height / 2}px)`
-                : "",
+              transform: {
+                xs: isCollasped ? `translateY(${windowSize.height / 2}px)` : "",
+                sm: isCollasped
+                  ? `translateY(${windowSize.height + 150}px)`
+                  : "",
+              },
             }}
           >
-            <CustomBox>
+            <CustomBox sx={{ paddingTop: { xs: "0px", sm: "150px" } }}>
               {clickedFeature !== null && (
                 <MediaCard feature={clickedFeature} />
               )}
