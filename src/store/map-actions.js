@@ -17,7 +17,11 @@ export const fetchPoiGeojson = () => {
 
     try {
       const poiGeojson = await fetchData();
-      dispatch(mapActions.setPoiGeojson(poiGeojson));
+      const reversePoiGeojson = {
+        ...poiGeojson,
+        features: poiGeojson.features.reverse(),
+      };
+      dispatch(mapActions.setPoiGeojson(reversePoiGeojson));
     } catch (error) {
       // TODO: ui error notification
       console.error(error);
