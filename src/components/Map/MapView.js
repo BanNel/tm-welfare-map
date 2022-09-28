@@ -91,7 +91,7 @@ const MapView = () => {
 
       let img = new Image(icons[key].width, icons[key].height);
       let sdf = icons[key].sdf;
-      img.onload = () => mapRef.current.addImage(key, img, {sdf: sdf});
+      img.onload = () => mapRef.current.addImage(key, img, {sdf: sdf, pixelRatio: 2});
       img.src = icons[key].file;
     }
   }, []);
