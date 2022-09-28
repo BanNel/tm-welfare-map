@@ -49,9 +49,142 @@ export const defaultMapStyle = {
       },
     },
     {
+      id: "3C_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#133B8F",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "3C"]],
+    },
+    {
+      id: "電信_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#133B8F",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "電信"]],
+    },
+    {
+      id: "交通_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#00609A",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "交通"]],
+    },
+    {
+      id: "商店_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#BD1D6D",
+      },
+
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "商店"]],
+    },
+    {
+      id: "居家_circle",
+      source: "poi_geojson",
+      type: "symbol",
+
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#027502",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "居家"]],
+    },
+    {
+      id: "旅遊_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#127F1F",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "旅遊"]],
+    },
+    {
+      id: "服飾_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#1F9745",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "服飾"]],
+    },
+    {
+      id: "運動_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#127F1F",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "運動"]],
+    },
+    {
+      id: "醫療_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#D74322",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "醫療"]],
+    },
+    {
+      id: "餐廳_circle",
+      source: "poi_geojson",
+      type: "symbol",
+      layout: {
+        "icon-image": "simple_circle",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 15, 0.5],
+      },
+      paint: {
+        "icon-color": "#D77E1F",
+      },
+      filter: ["all", ["==", "status", "Active"], ["==", "class", "餐廳"]],
+    },
+    {
       id: "3C",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -78,6 +211,7 @@ export const defaultMapStyle = {
       id: "電信",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -101,9 +235,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "電信"]],
     },
     {
-      id: "transportation",
+      id: "交通",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -127,9 +262,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "交通"]],
     },
     {
-      id: "shop",
+      id: "商店",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -153,9 +289,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "商店"]],
     },
     {
-      id: "home",
+      id: "居家",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -179,9 +316,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "居家"]],
     },
     {
-      id: "travel",
+      id: "旅遊",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -205,9 +343,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "旅遊"]],
     },
     {
-      id: "clothes",
+      id: "服飾",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -231,9 +370,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "服飾"]],
     },
     {
-      id: "sports",
+      id: "運動",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -257,9 +397,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "運動"]],
     },
     {
-      id: "medical",
+      id: "醫療",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
@@ -283,9 +424,10 @@ export const defaultMapStyle = {
       filter: ["all", ["==", "status", "Active"], ["==", "class", "醫療"]],
     },
     {
-      id: "restaurant",
+      id: "餐廳",
       source: "poi_geojson",
       type: "symbol",
+      minzoom: 10,
       layout: {
         "text-anchor": "top",
         "text-field": "{name}",
