@@ -93,7 +93,8 @@ const MapView = () => {
       if (iconExists) continue;
 
       let img = new Image(icons[key].width, icons[key].height);
-      img.onload = () => mapRef.current.addImage(key, img);
+      let sdf = icons[key].sdf;
+      img.onload = () => mapRef.current.addImage(key, img, {sdf: sdf, pixelRatio: 2});
       img.src = icons[key].file;
     }
   }, []);
