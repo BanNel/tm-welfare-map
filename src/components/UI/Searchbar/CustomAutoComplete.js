@@ -21,7 +21,7 @@ const CustomAutoComplete = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const fuzzySearchOptions = {
-    keys: ["properties.name", "properties.description"],
+    keys: ["properties.name", "properties.sub_name", "properties.description"],
   };
 
   const onChangeHandler = (event, value) => {
