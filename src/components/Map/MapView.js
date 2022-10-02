@@ -14,6 +14,8 @@ import icons from "../../utils/icons";
 import GoHomeContorl from "./Control/GoHomeControl";
 import PoiPopup from "./Popup/PoiPopup";
 
+import ReactGA from 'react-ga4';
+
 // In order to solve the bug in production: Uncaught ReferenceError: y is not defined
 // import maplibregl from "maplibre-gl";
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -22,6 +24,7 @@ import maplibreglWorker from "maplibre-gl/dist/maplibre-gl-csp-worker";
 import { uiActions } from "../../store/ui-slice";
 import { isBrowser, isMobile } from "react-device-detect";
 maplibregl.workerClass = maplibreglWorker;
+
 
 const MapView = () => {
   const dispatch = useDispatch();
@@ -235,6 +238,14 @@ const MapView = () => {
         dispatch(uiActions.setToggleSidebarIsOpen());
         dispatch(mapActions.setClickedFeature(feature));
         clickedFeature = feature;
+
+        // GA event
+        ReactGA.event({
+          category: "Click",
+          action: "click_poi",
+          label: feature.properties.name, // optional
+        });
+//        console.log("console log: Click POI " +  feature.properties.name);
       }
     });
   }, [dispatch, loadIcons]);
