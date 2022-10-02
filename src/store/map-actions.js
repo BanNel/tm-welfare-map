@@ -84,6 +84,14 @@ export const fetchPoiGeojson = () => {
         features: poiGeojson.features.reverse(),
       };
 
+      // Remove row if name is null
+      reversePoiGeojson = {
+        ...reversePoiGeojson,
+        features: reversePoiGeojson.features.filter(
+          (f) => f.properties.name !== null
+        ),
+      };
+
       // Get duplicate coordinates in poi features.
       let duplicate_coordinates = getDuplicateCoordinates(
         reversePoiGeojson.features

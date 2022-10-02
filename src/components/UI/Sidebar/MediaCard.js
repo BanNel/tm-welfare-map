@@ -27,13 +27,19 @@ export default function MediaCard(props) {
         " - " +
         props.feature.properties.expiration;
 
+  const name = props.feature.properties.name;
+  const sub_name = props.feature.properties.sub_name
+    ? " - " + props.feature.properties.sub_name
+    : "";
+  const full_name = name + sub_name;
+
   return (
     <Card
       sx={{ overflow: "auto", width: "100%", height: "100%", borderRadius: 0 }}
     >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.feature.properties.name}
+          {full_name}
         </Typography>
         <ClassChips
           class={props.feature.properties.class}
@@ -42,7 +48,7 @@ export default function MediaCard(props) {
 
         <Divider sx={{ margin: "10px 0px 10px 0px" }} />
 
-        <OpenWithGoogleMaps name={props.feature.properties.name} />
+        <OpenWithGoogleMaps name={full_name} />
 
         <Divider sx={{ margin: "10px 0px 10px 0px" }} />
 

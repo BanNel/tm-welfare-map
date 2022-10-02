@@ -12,6 +12,12 @@ import ClassChips from "../Sidebar/ClassChips";
 import Highlighter from "react-highlight-words";
 
 const SearchList = (props) => {
+  const name = props.item.properties.name;
+  const sub_name = props.item.properties.sub_name
+    ? " - " + props.item.properties.sub_name
+    : "";
+  const full_name = name + sub_name;
+  
   return (
     <Fragment>
       <Card
@@ -31,7 +37,7 @@ const SearchList = (props) => {
             <Highlighter
               searchWords={props.keyword.split("")}
               autoEscape={true}
-              textToHighlight={props.item.properties.name}
+              textToHighlight={full_name}
             />
           </Typography>
           <ClassChips

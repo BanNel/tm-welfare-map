@@ -6,4 +6,4 @@ wget $publish_link -O poi.csv
 csv2geojson \
     poi.csv \
     ../../src/assets/data/poi.geojson \
-    -include_columns status class subclass name description expiration start_date shop_url contract_url address
+    -include_columns status class subclass name sub_name description expiration start_date shop_url contract_url address

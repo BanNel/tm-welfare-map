@@ -5,7 +5,7 @@ import { uiActions } from "../../../store/ui-slice";
 import { Autocomplete, TextField } from "@mui/material";
 import Fuse from "fuse.js";
 import SearchList from "../SearchList/SearchList";
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
 
 const eventTrack = (category, action, label) => {
   console.log("GA event:", category, ":", action, ":", label);
@@ -13,8 +13,8 @@ const eventTrack = (category, action, label) => {
     category: category,
     action: action,
     label: label,
-  })
-}
+  });
+};
 
 const CustomAutoComplete = (props) => {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const CustomAutoComplete = (props) => {
 
   const fuzzySearch = (list, pattern, option) => {
     const fuse = new Fuse(list, option);
-    eventTrack.bind(this, pattern, "Search Button", "Button")
+    eventTrack.bind(this, pattern, "Search Button", "Button");
     return fuse.search(pattern);
   };
 
@@ -126,8 +126,12 @@ const CustomAutoComplete = (props) => {
           if (typeof option !== "object") return option;
 
           // If value is object, return name of this feature.
-          let name = option.item.properties.name;
-          return name;
+          const name = option.item.properties.name;
+          const sub_name = option.item.properties.sub_name
+            ? " - " + option.item.properties.sub_name
+            : "";
+          let full_name = name + sub_name;
+          return full_name;
         }}
         renderOption={(props, option) => {
           return (
