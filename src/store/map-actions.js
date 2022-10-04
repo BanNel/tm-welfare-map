@@ -103,7 +103,11 @@ export const fetchPoiGeojson = () => {
         duplicate_coordinates
       );
 
-      dispatch(mapActions.setPoiGeojson(reversePoiGeojson));
+      let result = turf.clustersDbscan(reversePoiGeojson, 0.25, {
+        mutate: true
+      });
+
+      dispatch(mapActions.setPoiGeojson(result));
     } catch (error) {
       // TODO: ui error notification
       console.error(error);
