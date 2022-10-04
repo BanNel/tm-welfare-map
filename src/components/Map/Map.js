@@ -300,6 +300,7 @@ const Map = () => {
         ref={mapRef}
         className="map"
         style={{
+          position: "fixed",
           width: windowSize.width + "px",
           height: windowSize.height + "px",
         }}
