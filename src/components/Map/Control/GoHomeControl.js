@@ -1,5 +1,3 @@
-import { useControl } from "react-map-gl";
-
 class GoHomeControl {
   constructor(props) {
     this._className = props.className;
@@ -41,11 +39,4 @@ class GoHomeControl {
   }
 }
 
-const GoHomeContorl = (props) => {
-  useControl(() => new GoHomeControl(props), {
-    position: props.position,
-  });
-  return null;
-};
-
-export default GoHomeContorl;
+export default GoHomeControl;

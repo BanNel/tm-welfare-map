@@ -20,12 +20,11 @@ import Tooltip from "@mui/material/Tooltip";
 export default function MediaCard(props) {
   // TODO: focus feature 更新後，初始化 Card scroll。
 
-  const contract_date =
-    props.feature.properties.start_date === undefined
-      ? props.feature.properties.expiration
-      : props.feature.properties.start_date +
-        " - " +
-        props.feature.properties.expiration;
+  const contract_date = !props.feature.properties.start_date
+    ? props.feature.properties.expiration
+    : props.feature.properties.start_date +
+      " - " +
+      props.feature.properties.expiration;
 
   const name = props.feature.properties.name;
   const sub_name = props.feature.properties.sub_name
@@ -86,7 +85,7 @@ export default function MediaCard(props) {
                 <ShareIcon color="primary" />
               </Tooltip>
             </ListItemIcon>
-            {props.feature.properties.shop_url !== undefined && (
+            {props.feature.properties.shop_url && (
               <Link
                 href={props.feature.properties.shop_url}
                 target="_blank"
@@ -105,7 +104,7 @@ export default function MediaCard(props) {
               </Tooltip>
             </ListItemIcon>
 
-            {props.feature.properties.contract_url !== undefined && (
+            {props.feature.properties.contract_url && (
               <Link
                 href={props.feature.properties.contract_url}
                 target="_blank"

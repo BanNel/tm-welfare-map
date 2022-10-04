@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    toggleSidebarIsOpen: false,
+    sidebarIsOpen: false,
     sidebarWidth: 0,
     sidebarHeight: 0,
     windowSize: null,
@@ -14,11 +14,11 @@ const uiSlice = createSlice({
     currentTaxId: { name: "", number: null },
   },
   reducers: {
-    setToggleSidebarIsOpen(state, action) {
-      state.toggleSidebarIsOpen = true;
+    setSidebarIsOpen(state, action) {
+      state.sidebarIsOpen = true;
     },
-    setToggleSidebarIsClose(state, action) {
-      state.toggleSidebarIsOpen = false;
+    setSidebarIsClose(state, action) {
+      state.sidebarIsOpen = false;
     },
     setSidebarWidth(state, action) {
       state.sidebarWidth = action.payload;
@@ -26,7 +26,7 @@ const uiSlice = createSlice({
     setSidebarHeight(state, action) {
       state.sidebarHeight = action.payload;
     },
-    setFuzzySearchOuput(state, action) {
+    setFuzzySearchOutput(state, action) {
       state.fuzzySearchOutput = action.payload;
     },
     setFuzzySearchKeyword(state, action) {

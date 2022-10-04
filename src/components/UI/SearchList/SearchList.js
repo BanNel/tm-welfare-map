@@ -17,7 +17,7 @@ const SearchList = (props) => {
     ? " - " + props.item.properties.sub_name
     : "";
   const full_name = name + sub_name;
-  
+
   return (
     <Fragment>
       <Card
