@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react";
-import { useDispatch } from "react-redux";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { mapActions } from "../../../store/map-slice";
 import { uiActions } from "../../../store/ui-slice";
 import { Autocomplete, TextField } from "@mui/material";
@@ -20,23 +20,53 @@ const CustomAutoComplete = (props) => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(true);
+  const clickedFeature = useSelector((state) => state.map.clickedFeature);
   const fuzzySearchOptions = {
-    keys: ["properties.name", "properties.sub_name", "properties.description"],
+    keys: [
+      { name: "properties.name", weight: 0.5 },
+      { name: "properties.sub_name", weight: 0.3 },
+      { name: "properties.description", weight: 0.2 },
+    ],
   };
+  const fuzzySearchKeyword = useSelector(
+    (state) => state.ui.fuzzySearchKeyword
+  );
+  const fuzzySearchOutput = useSelector((state) => state.ui.fuzzySearchOutput);
+
+  useEffect(() => {
+    if (clickedFeature === null) {
+      setInputValue("");
+      return;
+    }
+
+    const name = clickedFeature.properties.name;
+    const sub_name = clickedFeature.properties.sub_name
+      ? " - " + clickedFeature.properties.sub_name
+      : "";
+    const full_name = name + sub_name;
+    setInputValue(full_name);
+    setIsOpen(false);
+  }, [clickedFeature]);
+
+  useEffect(() => {
+    if (fuzzySearchOutput.length === 0) return;
+    if (clickedFeature === null && fuzzySearchOutput.length !== 0) {
+      setIsOpen(false);
+      setInputValue(fuzzySearchKeyword);
+    }
+  }, [dispatch, fuzzySearchKeyword, fuzzySearchOutput, clickedFeature]);
 
   const onChangeHandler = (event, value) => {
+    // User selected an POI in SearchList
     setIsOpen(false);
-    // User clear input text
+
+    // User clear input text (Delete or click clear button)
     if (value === null) {
       setInputValue("");
-
-      // If user click clear button
-      if (event.type === "click") {
-        dispatch(mapActions.setClickedFeature(null));
-        dispatch(uiActions.setToggleSidebarIsClose());
-        dispatch(uiActions.setFuzzySearchOuput([]));
-        dispatch(uiActions.setFuzzySearchKeyword(null));
-      }
+      dispatch(mapActions.setClickedFeature(null));
+      dispatch(uiActions.setSidebarIsClose());
+      dispatch(uiActions.setFuzzySearchOutput([]));
+      dispatch(uiActions.setFuzzySearchKeyword(null));
       return;
     }
 
@@ -50,53 +80,49 @@ const CustomAutoComplete = (props) => {
 
       // Update clicked feature and open sidebar
       dispatch(mapActions.setClickedFeature(value.item));
-      dispatch(uiActions.setToggleSidebarIsOpen());
+      dispatch(uiActions.setSidebarIsOpen());
     }
   };
 
   const onInputChangeHandler = (event, value, reason) => {
-    setInputValue(value);
-    setIsOpen(true);
-
-    if (event.type === "click") {
-      dispatch(mapActions.setClickedFeature(null));
-      dispatch(uiActions.setToggleSidebarIsClose());
-      dispatch(uiActions.setFuzzySearchOuput([]));
+    if (value.trim() === "") {
+      setInputValue("");
+      setIsOpen(false);
+      dispatch(uiActions.setFuzzySearchOutput([]));
       dispatch(uiActions.setFuzzySearchKeyword(null));
+      dispatch(uiActions.setSidebarIsClose());
+    }
+
+    if (value.trim() !== "") {
+      // Input text has value
+      setInputValue(value);
+      setIsOpen(true);
     }
   };
 
   const onKeydownHandler = (event) => {
     if (event.key === "Enter") {
-      // Prevent's default 'Enter' behavior.
-      event.defaultMuiPrevented = true;
-      // your handler code
-      dispatch(mapActions.setClickedFeature(null));
-
-      setIsOpen(false);
       let fuzzySearchOutput = fuzzySearch(
         props.list,
         inputValue,
         fuzzySearchOptions
       );
-      dispatch(uiActions.setFuzzySearchOuput(fuzzySearchOutput));
+      dispatch(uiActions.setFuzzySearchOutput(fuzzySearchOutput));
       dispatch(uiActions.setFuzzySearchKeyword(inputValue));
-      dispatch(uiActions.setToggleSidebarIsOpen());
+
+      if (clickedFeature !== null) {
+        dispatch(mapActions.setClickedFeature(null));
+      }
     }
   };
 
   const onBlurHandler = (event) => {
-    dispatch(mapActions.setClickedFeature(null));
-
+    // element has lost focus
     setIsOpen(false);
-    let fuzzySearchOutput = fuzzySearch(
-      props.list,
-      inputValue,
-      fuzzySearchOptions
-    );
-    dispatch(uiActions.setFuzzySearchOuput(fuzzySearchOutput));
-    dispatch(uiActions.setFuzzySearchKeyword(inputValue));
-    dispatch(uiActions.setToggleSidebarIsOpen());
+  };
+
+  const onFocusHandler = () => {
+    setIsOpen(true);
   };
 
   const fuzzySearch = (list, pattern, option) => {
@@ -121,6 +147,7 @@ const CustomAutoComplete = (props) => {
         onInputChange={onInputChangeHandler}
         options={props.list}
         filterOptions={filterOptions}
+        inputValue={inputValue}
         getOptionLabel={(option) => {
           // If value is a string typed by user, return it directly
           if (typeof option !== "object") return option;
@@ -145,6 +172,7 @@ const CustomAutoComplete = (props) => {
         }}
         onKeyDown={onKeydownHandler}
         onBlur={onBlurHandler}
+        onFocus={onFocusHandler}
       />
     </Fragment>
   );

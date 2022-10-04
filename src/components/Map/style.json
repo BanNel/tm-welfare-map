@@ -1,0 +1,1016 @@
+{
+    "version": 8,
+    "sources": {
+        "stamen_toner": {
+            "type": "raster",
+            "tiles": [
+                "https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256,
+            "attribution": "Map tiles by <a href=\"http://stamen.com\">Stamen Design</a>, under <a href=\"http://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a>. Data by <a href=\"http://openstreetmap.org\">OpenStreetMap</a>, under <a href=\"http://www.openstreetmap.org/copyright\">ODbL</a>."
+        },
+        "poi_geojson": {
+            "type": "geojson",
+            "data": null,
+            "attribution": "<a href=\"https://www.trendmicro.com/\" target=\"_blank\">&copy; Trend Micro Inc.</a>"
+        },
+        "company_geojson": {
+            "type": "geojson",
+            "data": null,
+            "attribution": "<a href=\"https://www.trendmicro.com/\" target=\"_blank\">&copy; Trend Micro Inc.</a>"
+        },
+        "selected_geojson": {
+            "type": "geojson",
+            "data": null,
+            "attribution": "<a href=\"https://www.trendmicro.com/\" target=\"_blank\">&copy; Trend Micro Inc.</a>"
+        }
+    },
+    "sprite": "",
+    "glyphs": "https://yuchuntsao.github.io/fonts/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "minzoom": 0,
+            "paint": {
+                "background-color": "rgba(255, 255, 255, 1)"
+            }
+        },
+        {
+            "id": "stamen_toner",
+            "type": "raster",
+            "source": "stamen_toner",
+            "paint": {
+                "raster-opacity": [
+                    "interpolate",
+                    [
+                        "exponential",
+                        0.5
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    9,
+                    0.3,
+                    18,
+                    0.4
+                ]
+            }
+        },
+        {
+            "id": "3C_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#14adcc"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "3C"
+                ]
+            ]
+        },
+        {
+            "id": "電信_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#14adcc"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "電信"
+                ]
+            ]
+        },
+        {
+            "id": "交通_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#1a7aff"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "交通"
+                ]
+            ]
+        },
+        {
+            "id": "商店_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#14adcc"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "商店"
+                ]
+            ]
+        },
+        {
+            "id": "居家_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#14adcc"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "居家"
+                ]
+            ]
+        },
+        {
+            "id": "旅遊_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#67cc00"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "旅遊"
+                ]
+            ]
+        },
+        {
+            "id": "服飾_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#14adcc"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "服飾"
+                ]
+            ]
+        },
+        {
+            "id": "運動_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#67cc00"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "運動"
+                ]
+            ]
+        },
+        {
+            "id": "醫療_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#ff531a"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "醫療"
+                ]
+            ]
+        },
+        {
+            "id": "餐廳_circle",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "layout": {
+                "icon-image": "simple_circle",
+                "icon-size": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    10,
+                    0.3,
+                    15,
+                    0.5
+                ]
+            },
+            "paint": {
+                "icon-color": "#ffa01a"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "餐廳"
+                ]
+            ]
+        },
+        {
+            "id": "3C",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#008099"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "3C"
+                ]
+            ]
+        },
+        {
+            "id": "電信",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#008099"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "電信"
+                ]
+            ]
+        },
+        {
+            "id": "交通",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#1256b2"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "交通"
+                ]
+            ]
+        },
+        {
+            "id": "商店",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#008099"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "商店"
+                ]
+            ]
+        },
+        {
+            "id": "居家",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#008099"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "居家"
+                ]
+            ]
+        },
+        {
+            "id": "旅遊",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#4e9900"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "旅遊"
+                ]
+            ]
+        },
+        {
+            "id": "服飾",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#008099"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "服飾"
+                ]
+            ]
+        },
+        {
+            "id": "運動",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#4e9900"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "運動"
+                ]
+            ]
+        },
+        {
+            "id": "醫療",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#e53900"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "醫療"
+                ]
+            ]
+        },
+        {
+            "id": "餐廳",
+            "source": "poi_geojson",
+            "type": "symbol",
+            "minzoom": 10,
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{subclass}",
+                "text-max-width": 30
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#e57300"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "status",
+                    "Active"
+                ],
+                [
+                    "==",
+                    "class",
+                    "餐廳"
+                ]
+            ]
+        },
+        {
+            "id": "company",
+            "source": "company_geojson",
+            "type": "symbol",
+            "layout": {
+                "text-anchor": "top",
+                "text-field": "{name}\n{name:en}",
+                "text-font": [
+                    "Noto Sans Regular"
+                ],
+                "text-offset": [
+                    0,
+                    0.8
+                ],
+                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "trend_micro"
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#1544AF"
+                ],
+                "text-halo-blur": 0.5,
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            }
+        },
+        {
+            "id": "selected_layer",
+            "source": "selected_geojson",
+            "type": "symbol",
+            "layout": {
+                "text-anchor": "left",
+                "text-field": "{name}",
+                "text-font": [
+                    "Noto Sans Bold"
+                ],
+                "text-offset": [
+                    1,
+                    0
+                ],
+                "text-padding": 2,
+                "text-size": 16,
+                "icon-image": "selected_icon",
+                "text-max-width": 30,
+                "visibility": "visible"
+            },
+            "paint": {
+                "text-color": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    "rgba(3, 117, 214, 1)",
+                    "#E55547"
+                ],
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1
+            }
+        }
+    ]
+}

@@ -32,15 +32,14 @@ const CustomBox = styled(Box)({
 
 const ToggleSidebar = () => {
   const dispatch = useDispatch();
-  const toggleSidebarIsOpen = useSelector(
-    (state) => state.ui.toggleSidebarIsOpen
-  );
+  const sidebarIsOpen = useSelector((state) => state.ui.sidebarIsOpen);
   const clickedFeature = useSelector((state) => state.map.clickedFeature);
-  let isCollasped = toggleSidebarIsOpen ? "" : "collapsed";
+  const fuzzySearchOutput = useSelector((state) => state.ui.fuzzySearchOutput);
+  let isCollasped =
+    sidebarIsOpen === true || fuzzySearchOutput.length !== 0 ? "" : "collapsed";
   const fuzzySearchKeyword = useSelector(
     (state) => state.ui.fuzzySearchKeyword
   );
-  const fuzzySearchOutput = useSelector((state) => state.ui.fuzzySearchOutput);
   const windowSize = useSelector((state) => state.ui.windowSize);
 
   // Save sidebar width and heigth for padding map
@@ -65,7 +64,7 @@ const ToggleSidebar = () => {
 
   const onClickSearchListHandler = (feature) => {
     dispatch(mapActions.setClickedFeature(feature));
-    dispatch(uiActions.setToggleSidebarIsOpen());
+    dispatch(uiActions.setSidebarIsOpen());
   };
 
   return (
@@ -166,7 +165,8 @@ const ToggleSidebar = () => {
                 fuzzySearchKeyword !== null && (
                   <Box
                     sx={{
-                      p: 2,
+                      pl: 2,
+                      pr: 2,
                       height: "100%",
                       overflow: "auto",
                     }}
