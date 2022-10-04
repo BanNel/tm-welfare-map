@@ -1,2 +1,0 @@
-(self.webpackChunktm_welfare_map=self.webpackChunktm_welfare_map||[]).push([[636],{1636:function(e,a){a.printMsg=function(){console.log("This is a message from the demo package")}}}]);
-//# sourceMappingURL=636.db9bcc9d.chunk.js.map
