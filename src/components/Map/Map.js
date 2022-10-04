@@ -1,7 +1,5 @@
 import { Fragment, useRef, useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import maplibregl from "maplibre-gl";
-import "maplibre-gl/dist/maplibre-gl.css";
 import "./Map.css";
 import GoHomeControl from "./Control/GoHomeControl";
 import { mapActions } from "../../store/map-slice";
@@ -13,6 +11,14 @@ import mapDefaultStyle from "./style.json";
 import icons from "../../utils/icons";
 import ReactGA from "react-ga4";
 import { isBrowser, isMobile } from "react-device-detect";
+
+// In order to solve the bug in production: Uncaught ReferenceError: y is not defined
+// import maplibregl from "maplibre-gl";
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import maplibregl from "!maplibre-gl"; // ! is important here
+import maplibreglWorker from "maplibre-gl/dist/maplibre-gl-csp-worker";
+import "maplibre-gl/dist/maplibre-gl.css";
+maplibregl.workerClass = maplibreglWorker;
 
 const Map = () => {
   const dispatch = useDispatch();
