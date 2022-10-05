@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tm-welfare-map/static/css/main.744a3d23.css",
-    "main.js": "/tm-welfare-map/static/js/main.bf09097f.js",
+    "main.js": "/tm-welfare-map/static/js/main.5f4ba199.js",
     "static/js/787.54926cfe.chunk.js": "/tm-welfare-map/static/js/787.54926cfe.chunk.js",
     "static/media/poi.geojson": "/tm-welfare-map/static/media/poi.9e2b07abb9157c96fe43.geojson",
     "static/media/burger.svg": "/tm-welfare-map/static/media/burger.e2d104d9db7a99a90a218c93373205f6.svg",
@@ -27,11 +27,11 @@
     "index.html": "/tm-welfare-map/index.html",
     "static/media/simple_circle.svg": "/tm-welfare-map/static/media/simple_circle.b394db81e440a8786d5a2bda901d0b49.svg",
     "main.744a3d23.css.map": "/tm-welfare-map/static/css/main.744a3d23.css.map",
-    "main.bf09097f.js.map": "/tm-welfare-map/static/js/main.bf09097f.js.map",
+    "main.5f4ba199.js.map": "/tm-welfare-map/static/js/main.5f4ba199.js.map",
     "787.54926cfe.chunk.js.map": "/tm-welfare-map/static/js/787.54926cfe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.744a3d23.css",
-    "static/js/main.bf09097f.js"
+    "static/js/main.5f4ba199.js"
   ]
 }
