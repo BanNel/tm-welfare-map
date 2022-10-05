@@ -1,11 +1,11 @@
 import "./App.css";
 import { Fragment, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchCompanyGeojson, fetchPoiGeojson } from "./store/map-actions";
 import { uiActions } from "./store/ui-slice";
 import useResize from "./hooks/use-resize";
 
-import Map from "./components/Map/Map";
+import MapView from "./components/Map/MapView";
 import TaxIdModal from "./components/UI/Modal/TaxIdModal";
 import SearchBar from "./components/UI/Searchbar/SearchBar";
 import ToggleSidebar from "./components/UI/Sidebar/ToggleSidebar";
@@ -38,8 +38,6 @@ function App() {
 
   const windowIsReady = windowSize.width !== null && windowSize.height !== null;
 
-  const dataIsReady = useSelector((state) => state.map.poiGeojson) !== null;
-
   return (
     <Fragment>
       {windowIsReady && (
@@ -48,7 +46,7 @@ function App() {
           <TaxIdModal />
           <ToggleSidebar />
           <SearchBar />
-          {dataIsReady && <Map />}
+          <MapView />
         </Fragment>
       )}
     </Fragment>

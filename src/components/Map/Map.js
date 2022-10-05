@@ -39,7 +39,7 @@ const Map = () => {
 
   useEffect(() => {
     if (clickedFeature === null && previousClickedFeature == null) return;
-    
+
     // Update style and selected layer if clickedFeature changes.
     let selectedLayerId = "selected_layer";
     let selectedSourceId = "selected_geojson";
@@ -298,11 +298,10 @@ const Map = () => {
     <Fragment>
       <div
         ref={mapRef}
-        className="map"
         style={{
           position: "fixed",
-          width: windowSize.width + "px",
-          height: windowSize.height + "px",
+          width: "100%",
+          height: "100%",
         }}
       />
     </Fragment>
