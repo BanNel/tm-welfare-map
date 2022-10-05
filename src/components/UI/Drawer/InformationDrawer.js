@@ -39,7 +39,7 @@ export default function InformationDrawer() {
     },
     {
       name: "問題回報",
-      url: "#",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSeBfRF4Q6R_SCuj8XklzdksCL-O7h6ibRH0k3aTwJ6ejWof_Q/viewform",
       icon: <ErrorOutlineIcon color="error" />,
     },
   ];
