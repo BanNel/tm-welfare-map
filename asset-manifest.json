@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/tm-welfare-map/static/css/main.744a3d23.css",
-    "main.js": "/tm-welfare-map/static/js/main.c9b554fb.js",
+    "main.js": "/tm-welfare-map/static/js/main.c6816319.js",
     "static/js/787.54926cfe.chunk.js": "/tm-welfare-map/static/js/787.54926cfe.chunk.js",
-    "static/media/poi.geojson": "/tm-welfare-map/static/media/poi.4df4b15c0530d83a1165.geojson",
+    "static/media/poi.geojson": "/tm-welfare-map/static/media/poi.67d924d5635cb25b6253.geojson",
     "static/media/burger.svg": "/tm-welfare-map/static/media/burger.e2d104d9db7a99a90a218c93373205f6.svg",
     "static/media/selected_icon.svg": "/tm-welfare-map/static/media/selected_icon.85298d6504d0abff3f665791a027c804.svg",
     "static/media/japanese_restaurant.svg": "/tm-welfare-map/static/media/japanese_restaurant.93f689602c9d793a6d1bd824ec0a8a58.svg",
@@ -27,11 +27,11 @@
     "index.html": "/tm-welfare-map/index.html",
     "static/media/simple_circle.svg": "/tm-welfare-map/static/media/simple_circle.b394db81e440a8786d5a2bda901d0b49.svg",
     "main.744a3d23.css.map": "/tm-welfare-map/static/css/main.744a3d23.css.map",
-    "main.c9b554fb.js.map": "/tm-welfare-map/static/js/main.c9b554fb.js.map",
+    "main.c6816319.js.map": "/tm-welfare-map/static/js/main.c6816319.js.map",
     "787.54926cfe.chunk.js.map": "/tm-welfare-map/static/js/787.54926cfe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.744a3d23.css",
-    "static/js/main.c9b554fb.js"
+    "static/js/main.c6816319.js"
   ]
 }
